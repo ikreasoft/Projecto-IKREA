@@ -48,6 +48,6 @@ public class TituloRepositorioTests {
         assertEquals("José Carlos", encontrado.getAutor().getNombre());
         assertEquals("Gonz.",encontrado.getAutor().getApellido());
 
-    }
+    } // Fin test buscar por titulo
 
-    }
+} // Fin de clase
