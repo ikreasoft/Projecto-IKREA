@@ -1,0 +1,25 @@
+
+<form th:action="@{/addTitle}" th:object="${titulo}" method="post">
+    <!--<label for="autor">Autor:</label>
+    <select name="autor" th:field="*{autor}">
+         <option value="">Select an author</option>
+         <th:block th:each="author : ${autores}">
+             <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" th:selected="${author.id== titulo.autor.id}"></option>
+         </th:block>
+     </select>
+     <br><br>-->
+    <label for="titulo">Titulo:</label>
+    
+    <input type="text" th:field="${titulo.nombre}"/>
+    <br><br>
+    
+ 
+    
+    <label for="isbn">isbn:</label>
+    <input type="text" th:field="*{isbn}"><br/><br/>
+    
+    <label for="numReserva">número reserva:</label>
+    <input type="text" th:field="*{numReservas}"/><br/><br/>
+    
+    <input type="submit" value="Crear Titulo" onclick="location.href='/index.html'"/>
+</form>
