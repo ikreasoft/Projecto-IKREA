@@ -16,10 +16,10 @@ public class ControladorUsuario {
     
     @GetMapping("/users")
     public String showUserList(Model model) {
-        List<Usuario> listUsuarios = service.listAll();
-        model.addAttribute("listUsers", listUsuarios);
+        List<Usuario> listUsuario = service.listAll();
+        model.addAttribute("listUsers", listUsuario);
 
-        return "Usuarios";
+        return "Usuario";
     }
 
     @GetMapping("/users/new")

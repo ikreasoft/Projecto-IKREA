@@ -29,22 +29,24 @@
           <th>Enabled</th>
           <th></th>
         </tr>
-      </thead>
+
       <tbody>
-      <th:block th:each="usuario : ${listUsuarios}">
+      <th:block th:each="usuario : ${listusers}">
+
        <tr>
-         <td>[[${usuarios.id}]]</td>
-         <td>[[${usuarios.PrimerNombre}]]</td>
-         <td>[[${usuarios.Apellidos}]]</td>
-         <td>[[${usuarios.email}]]</td>
-         <td>[[${usuarios.Direccion}]]</td>
-         <td>[[${usuarios.telefono}]]</td>
-         <td>[[${usuarios.enabled}]]</td>
+         <td>[[${users.id}]]</td>
+         <td>[[${users.nombre}]]</td>
+         <td>[[${users.Apellidos}]]</td>
+         <td>[[${users.email}]]</td>
+         <td>[[${users.Direccion}]]</td>
+         <td>[[${users.telefono}]]</td>
+         <td>[[${users.enabled}]]</td>
          <td>
-           <a class="h4 mr-3" th:href="@{'/users/edit/' + ${usuario.id}}">Edit</a>
-           <a class="h4" th:href="@{'/users/delete/' + ${usuario.id}}">Delete</a>
+           <a class="h4 mr-3" th:href="@{'/users/edit/' + ${users.id}}">Edit</a>
+           <a class="h4" th:href="@{'/users/delete/' + ${users.id}}">Delete</a>
          </td>
        </tr>
+
       </th:block>
 
       </tbody>

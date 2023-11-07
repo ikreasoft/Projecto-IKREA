@@ -12,11 +12,8 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(length = 15, nullable = false)
-    private String contraseña;
-
     @Column(length = 45, nullable = false, name = "primer_nombre")
-    private String primerNombre;
+    private String nombre;
 
     @Column(length = 45, nullable = false, name = "apellidos")
     private String Apellidos;
@@ -63,20 +60,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getcontraseña() {
-        return contraseña;
-    }
-
-    public void setcontraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public String getprimerNombre() {
-        return primerNombre;
+    public String getNombre() {
+        return nombre;
     }
 
     public void setprimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+        this.nombre = primerNombre;
     }
 
     public String getApellidos() {
@@ -92,8 +81,7 @@ public class Usuario {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
-                ", contraseña='" + contraseña + '\'' +
-                ", primerNombre='" + primerNombre + '\'' +
+                ", primerNombre='" + nombre + '\'' +
                 ", Apellidos='" + Apellidos + '\'' +
                 ", Direccion='" + Direccion + '\'' +
                 ", Telefono='" + telefono + '\'' +
