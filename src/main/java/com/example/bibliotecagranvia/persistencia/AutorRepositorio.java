@@ -1,4 +1,5 @@
-package com.example.bibliotecagranvia.autor;
+package com.example.bibliotecagranvia.persistencia;
+import com.example.bibliotecagranvia.entidades.Autor;
 
 import org.springframework.data.repository.CrudRepository;
 

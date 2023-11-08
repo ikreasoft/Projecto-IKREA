@@ -1,7 +1,7 @@
-package com.example.bibliotecagranvia.titulo;
+package com.example.bibliotecagranvia.entidades;
 
 
-import com.example.bibliotecagranvia.autor.Autor;
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,12 +24,14 @@ public class Titulo {
     private String numReservas;
     @ManyToMany
     private List<Autor> autores;
-    public Titulo(){}
-    public Titulo(String nombre, String isbn, String numReserva, Autor autor){
+    public Titulo(){
+        autores= new ArrayList<Autor>();
+    }
+    public Titulo(String nombre, String isbn, String numReserva, List<Autor> autor){
         this.nombre=nombre;
         this.isbn=isbn;
         this.numReservas=numReserva;
-        //this.autor=autor;
+        this.autores=autor;
 
     }
 

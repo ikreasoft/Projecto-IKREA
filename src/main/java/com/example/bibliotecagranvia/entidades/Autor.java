@@ -1,4 +1,4 @@
-package com.example.bibliotecagranvia.autor;
+package com.example.bibliotecagranvia.entidades;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

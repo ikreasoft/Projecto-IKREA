@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.bibliotecagranvia.entidades.Autor;
 import com.example.bibliotecagranvia.entidades.Titulo;
 import com.example.bibliotecagranvia.persistencia.TituloRepositorio;
 
@@ -28,7 +29,8 @@ public class MainController {
     public String addTitlePost(@ModelAttribute Titulo titulo,Model model){
            // titulo.setAutor(autorRepositorio.findAll().iterator().next());
        // titulo.setAutor(autorRepositorio.findById(autore.getId()).get());
+       //titulo.addAutor(new Autor("José Carlos","Gonz."));
         tituloRepositorio.save(titulo);
-        return showHomePage();
+        return "redirect:/";
     }
 }
