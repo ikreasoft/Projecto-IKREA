@@ -1,0 +1,9 @@
+<form action="#" th:action="@{/addAuthor}" th:object="${autor}" method="post">
+    <label for="nombre">Nombre</label>
+    <input type="text" th:field="*{nombreAutor}" id="nombre" placeholder="Nombre">
+    <span th:if="${#fields.hasErrors('nombreAutor')}" th:errors="*{nombreAutor}"></span>
+    <label for="apellido">Apellido</label>
+    <input type="text" th:field="*{apellido}" id="apellido" placeholder="Apellido">
+    <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
+    <input type="submit" value="Crear Autor">   
+</form>
