@@ -3,7 +3,7 @@ package com.registro.usuario;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "users")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,24 +12,24 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(length = 45, nullable = false, name = "primer_nombre")
+    @Column(length = 45, nullable = false, name = "nombre")
     private String nombre;
 
     @Column(length = 45, nullable = false, name = "apellidos")
-    private String Apellidos;
+    private String apellidos;
 
     @Column(length = 45, nullable = false, name = "direccion")
-    private String Direccion;
+    private String direccion;
 
     @Column(length = 45, nullable = false, name = "telefono")
     private String telefono;
 
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
     public void setDireccion(String direccion) {
-        Direccion = direccion;
+        this.direccion = direccion;
     }
 
     public String getTelefono() {
@@ -40,7 +40,9 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     private boolean enabled;
 
@@ -64,16 +66,16 @@ public class Usuario {
         return nombre;
     }
 
-    public void setprimerNombre(String primerNombre) {
-        this.nombre = primerNombre;
+    public void setprimerNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellidos() {
-        return Apellidos;
+        return apellidos;
     }
 
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     @Override
@@ -82,8 +84,8 @@ public class Usuario {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", primerNombre='" + nombre + '\'' +
-                ", Apellidos='" + Apellidos + '\'' +
-                ", Direccion='" + Direccion + '\'' +
+                ", Apellidos='" + apellidos + '\'' +
+                ", Direccion='" + direccion + '\'' +
                 ", Telefono='" + telefono + '\'' +
                 '}';
     }
