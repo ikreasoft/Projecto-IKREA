@@ -23,7 +23,7 @@ public class Autor {
     private String nombreAutor;
     @NotBlank(message = "Apellido obligatorio")
     private String apellidos;
-    //private Date fechaNacimiento;
+    private Date fechaNacimiento;
 
     public Autor(){}
 
@@ -52,10 +52,10 @@ public class Autor {
     public void setApellido(String apellidos){
         this.apellidos=apellidos;
     }
-    /*public Date getFechaNacimiento(){
+    public Date getFechaNacimiento(){
         return fechaNacimiento;
     }
     public void setFechaNacimiento(Date fechaNacimiento){
         this.fechaNacimiento=fechaNacimiento;
-    }*/
+    }
 }
