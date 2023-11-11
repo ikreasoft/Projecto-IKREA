@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Página web IKREA</title>
     <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
     <link rel="stylesheet" href="css/estilos.css">
@@ -11,23 +10,24 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Acerca de</a>
-            <a href="#">Portafolio</a>
-            <a href="#">Servicios</a>
-            <a href="#">Contacto</a>
-            <li class="nav__item">
-                <a class="nav__link" href="Servicios.html">Servicios</a>
-              </li>
-              
+        <div class="menu">
+            
+        <nav>  
+            <ul>
+             <li><a href="authors.html">Servicios</a></li>
+             <li><a href="addAuthor.html">Añadir Autor</a></li>
+             <li><a href="addTitle.html">Añadir Título</a></li>
+             <li><a href="updateAuthor.html">Modificar Título</a></li>
+             <li><a class="nav__link" href="#">Registrar Usuario</a></li>
+            </ul>
+        </nav>  
+        </div>    
 
-        </nav>
         <section class="textos-header">
             <h1>Donde cada página es una Aventura</h1>
-            <h2>¡Bienvenidos a la biblioteca IKREA!</h2>
+            <h2>¡Bienvenidos a la biblioteca GV!</h2>
         </section>
-        <div class="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-0.00,49.85 C150.00,149.60 260.95,-60.53 500.00,49.85 L500.00,149.60 L-0.00,149.60 Z" style="stroke: none; fill: #fff;"></path></svg></div>
+        <!--<div class="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-0.00,49.85 C150.00,149.60 260.95,-60.53 500.00,49.85 L500.00,149.60 L-0.00,149.60 Z" style="stroke: none; fill: #fff;"></path></svg></div>-->
     </header>
     <main>
         <section class="contenedor sobre-nosotros">
@@ -36,38 +36,33 @@
                 <img src="img/labirinto1.jpg" alt="" class="imagen-about-us">
                 <div class="contenido-textos">
                     <h3><span>1</span>Las últimas tendencias</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem repellat dignissimos sunt! Iste incidunt itaque, possimus nisi animi dignissimos esse quidem ratione pariatur, molestias consequatur optio facere aliquam vitae est!</p>
-                    <h3><span>2</span>Las últimas tendencias</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem repellat dignissimos sunt! Iste incidunt itaque, possimus nisi animi dignissimos esse quidem ratione pariatur, molestias consequatur optio facere aliquam vitae est!</p>
+                    <p>Descubre las últimas tendencias literarias en nuestra biblioteca, donde la frescura de los bestsellers y las voces emergentes dan forma al panorama actual. Sumérgete en lo más emocionante que la literatura contemporánea tiene para ofrecer, todo a tu alcance aquí.</p>
+                    <h3><span>2</span>Colecciones especiales</h3>
+                    <p>Explora nuestras colecciones especiales cuidadosamente seleccionadas, que van desde clásicos atemporales hasta temas de actualidad. Sumérgete en mundos temáticos específicos y descubre joyas literarias relacionadas.</p>
+                    <h3><span>2</span>Novedades mensuales</h3>
+                    <p>Mantente al día con nuestras adquisiciones más recientes. Cada mes, destacamos las novedades literarias que han llegado a nuestras estanterías, desde los últimos éxitos hasta las revelaciones literarias emergentes.</p>
                 </div>
             </div>
         </section>
-        <section class="portafolio">
-            <div class="contenedor">
-                <h2 class="titulo">Portafolio</h2>
-                <div class="galeria-port">
-                    <div class="imagen-port"></div>
-                </div>
-            </div>
-        </section>
+
         <section class="about-services">
             <div class="contenedor">
                 <h2 class="titulo">Nuestros servicios</h2>
-                <div class="servicion-cont">
+                <div class="servicio-cont">
                     <div class="servicio-ind">
                         <img src="img/ilus1.png" alt="">
-                        <h3>Name</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, facere!</p>
+                        <h3>Programas Culturales</h3>
+                        <p>Sumérgete en la diversidad cultural a través de nuestros programas culturales. Desde eventos de música en vivo hasta proyecciones de películas y charlas sobre arte, ofrecemos experiencias que van más allá de las páginas de un libro. Conéctate con la riqueza cultural que la biblioteca tiene para ofrecer.</p>
                     </div>
                     <div class="servicio-ind">
                         <img src="img/ilus2.png" alt="">
-                        <h3>Name</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, facere!</p>
+                        <h3>Espacios de Estudio y Coworking</h3>
+                        <p>Facilitamos el aprendizaje y la colaboración proporcionando espacios dedicados para estudio y coworking. Ya sea que necesites un lugar tranquilo para estudiar o una área para trabajar en proyectos colaborativos, nuestra biblioteca te ofrece un entorno propicio para el crecimiento intelectual.</p>
                     </div>
                     <div class="servicio-ind">
                         <img src="img/ilus3.png" alt="">
-                        <h3>Name</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, facere!</p>
+                        <h3>Asesoramiento Literario</h3>
+                        <p>¿Buscas recomendaciones personalizadas? Nuestro servicio de asesoramiento literario te conecta con expertos bibliotecarios que pueden recomendarte libros adaptados a tus gustos y preferencias. Descubre nuevas lecturas que se ajusten a tus intereses específicos y enriquece tu experiencia de lectura.</p>
                     </div>
                 </div>
             </div>
@@ -76,7 +71,7 @@
     <footer>
         <div class="contenedor-footer">
             <div class="content-foo">
-                <h4>Phone</h4>
+                <h4>Teléfono</h4>
                 <p>976877267</p>
             </div>
             <div class="content-foo">
@@ -84,11 +79,11 @@
                 <p>IKREA-library@gmail.com</p>
             </div>
             <div class="content-foo">
-                <h4>Location</h4>
+                <h4>Ubicación</h4>
                 <p>gran vía, Madrid</p>
             </div>
         </div>
-        <h2 class="Titulo-final">&copy; IKREA | Library </h2>
+        <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
     </footer>
 </body>
 </html>
