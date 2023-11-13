@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Users</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"  />
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div><h2>Usuarios Registrados</h2></div>
+  <div class="m-2">
+    <a class="h3" th:href="@{/users/new}">Agregar Usuario</a>
+    <a class="h2" th:href="@{/index}">Volver</a>
+  </div>
+
+  <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+  </div>
+
+  <div>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>E-mail</th>
+        <th>Primer Nombre</th>
+        <th>Apellidos</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Enabled</th>
+        <th></th>
+      </tr>
+      </thead> <!-- Agregado el cierre de la etiqueta thead -->
+
+      <tbody>
+      <tr th:each="usuario : ${listUsers}">
+        <td th:text="${usuario.id}"></td>
+        <td th:text="${usuario.email}"></td>
+        <td th:text="${usuario.nombre}"></td>
+        <td th:text="${usuario.apellidos}"></td>
+        <td th:text="${usuario.direccion}"></td>
+        <td th:text="${usuario.telefono}"></td>
+        <td th:text="${usuario.enabled}"></td>
+        <td>
+          <a class="h4 mr-3" th:href="@{'/users/edit/' + ${usuario.id}}">Edit</a>
+          <a class="h4" th:href="@{'/users/delete/' + ${usuario.id}}">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

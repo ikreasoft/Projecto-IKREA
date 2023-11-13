@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to our library</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Bienvenidos a agregar titulos y usuarios !</h1>
+    <a class="h2" th:href="@{/addTitle}">Añadir Título</a>
+    <a class="h2" th:href="@{/users}">Mirar Usuarios</a>
+</div>
+</body>
+</html>
