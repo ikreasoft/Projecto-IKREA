@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo de ejemplares</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"  />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Ejemplares Registrados</h2></div>
+
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>nombre de titulo</th>
+                <th>numero de serie</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="ejemplar : ${listaEjemplares}">
+                <td th:text="${ejemplar.id}"></td>
+                <td th:text="${ejemplar.titulo.nombre}"></td>
+                <td th:text="${ejemplar.numeroSerie}"></td>
+                <td>
+                    <a th:href="@{/ejemplares/{id}(id=${ejemplar.id})}">Ver Detalles</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
