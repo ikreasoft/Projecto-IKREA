@@ -7,9 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import java.util.List;
 @Entity
 @Table(name = "autor")
 public class Autor {
@@ -17,6 +19,7 @@ public class Autor {
     @Id  
     @SequenceGenerator(name="yourSequenceGenerator", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "yourTableGenerator")
+    @Column(name = "autor_id")
     private Long id;
     @Column(name = "nombre")
     @NotBlank(message = "Nombre obligatorio")
@@ -24,6 +27,8 @@ public class Autor {
     @NotBlank(message = "Apellido obligatorio")
     private String apellidos;
     private Date fechaNacimiento;
+    @ManyToMany(mappedBy="autores")
+    List<Titulo> titulos;
 
     public Autor(){}
 

@@ -28,13 +28,14 @@ public class AutorController {
     @PostMapping("/addAuthor")
     public String addAuthorPost(@Valid Autor autor, BeanPropertyBindingResult result, Model model){
         if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
             return "addAuthor";
         }
         
         authorRepository.save(autor);
         return "redirect:/authors";
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editAuthor/{id}")
 public String showUpdateForm(@PathVariable("id") long id, Model model) {
     Autor autor = authorRepository.findById(id)
       .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
@@ -42,14 +43,17 @@ public String showUpdateForm(@PathVariable("id") long id, Model model) {
     model.addAttribute("autor", autor);
     return "updateAuthor";
 }
-@PostMapping("/update/{id}")
+@PostMapping("/editAuthor/{id}")
 public String updateUser(@PathVariable("id") long id, @Valid Autor autor, 
   BindingResult result, Model model) {
     if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
         autor.setId(id);
         return "updateAuthor";
     }
-        
+        System.out.println("a  das adsfkjasñldkfjasñldkfjñsadlokfha");
+        for(int i=0;i<30;i++)
+        System.out.println("");
     authorRepository.save(autor);
     return "redirect:/authors";
 }

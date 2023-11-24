@@ -3,10 +3,14 @@ package com.example.bibliotecagranvia.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -18,16 +22,21 @@ public class Titulo {
     @Id
     @SequenceGenerator(name="yourSequenceGenerator", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "yourTableGenerator")
+    @Column(name = "tituloId")
     private Long id;
     private String nombre;
     private String isbn;
-    private String numReservas;
+    private int numReservas;
     @ManyToMany
+    @JoinTable(
+    name = "TituloAutor", 
+    joinColumns = @JoinColumn(name = "tituloId"), 
+    inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private List<Autor> autores;
     public Titulo(){
         autores= new ArrayList<Autor>();
     }
-    public Titulo(String nombre, String isbn, String numReserva, List<Autor> autor){
+    public Titulo(String nombre, String isbn, int numReserva, List<Autor> autor){
         this.nombre=nombre;
         this.isbn=isbn;
         this.numReservas=numReserva;
@@ -39,8 +48,8 @@ public class Titulo {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long tituloId) {
+        this.id = tituloId;
     }
 
     public String getNombre(){
@@ -58,11 +67,11 @@ public class Titulo {
         this.isbn = isbn;
     }
 
-    public String getNumReservas() {
+    public int getNumReservas() {
         return numReservas;
     }
 
-    public void setNumReservas(String numReserva) {
+    public void setNumReservas(int numReserva) {
         this.numReservas = numReserva;
     }
 

@@ -1,5 +1,5 @@
 
-<form th:action="@{/addTitle}" th:object="${titulo}" method="post">
+<form th:action="@{/editTitle/{id}(id=${titulo.id})}" th:object="${titulo}" method="post">
     <label for="titulo">Titulo:</label>
     <input type="text" th:field="${titulo.nombre}"/>
     <br><br>
@@ -15,5 +15,5 @@
          </th:block>
      </select>
      <br><br>
-    <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/index.html'"/>
+    <input type="submit" value="Editar Titulo" />
 </form>

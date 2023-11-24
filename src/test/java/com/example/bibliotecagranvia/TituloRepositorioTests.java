@@ -32,7 +32,7 @@ public class TituloRepositorioTests {
         Autor autor = new Autor("TTT", "RRRR");
         autorRepositorior.save(autor);
         List<Autor> autores = List.of(autor);
-        Titulo titulo = new Titulo("Día", "ISBN09", "Reserva2", autores);
+        Titulo titulo = new Titulo("Día", "ISBN09", 2, autores);
         tituloRepositorio.save(titulo);
         assertNotNull(titulo.getId());
     }
@@ -42,13 +42,13 @@ public class TituloRepositorioTests {
         Autor autor = new Autor("José Carlos","Gonz.");
         autorRepositorior.save(autor);
         List<Autor> autores = List.of(autor);
-        Titulo titulo = new Titulo("El bos","ISBN1","R23",autores);
+        Titulo titulo = new Titulo("El bos","ISBN1",23,autores);
         tituloRepositorio.save(titulo);
 
         Titulo encontrado = tituloRepositorio.findByNombre("El bos");
         assertNotNull(encontrado);
         assertEquals("ISBN1",encontrado.getIsbn());
-        assertEquals("R23",encontrado.getNumReservas());
+        assertEquals(23,encontrado.getNumReservas());
         /*assertEquals("José Carlos", encontrado.getAutor().getNombreAutor());
         assertEquals("Gonz.",encontrado.getAutor().getApellido());*/
 

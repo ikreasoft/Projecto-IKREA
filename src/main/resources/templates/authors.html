@@ -18,7 +18,7 @@
                     <td th:text="${autor.nombreAutor}"></td>
                     <td th:text="${autor.apellido}"></td>
                     <!--<td th:text="${autor.fechaNacimein}"</td>-->
-                    <td><a th:href="@{/edit/{id}(id=${autor.id})}">Edit</a></td>
+                    <td><a th:href="@{/editAuthor/{id}(id=${autor.id})}">Edit</a></td>
                     <td><a th:href="@{/delete/{id}(id=${autor.id})}">Delete</a></td>
                 </tr>
             </tbody>
