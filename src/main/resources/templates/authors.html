@@ -1,0 +1,27 @@
+<button onclick="location.href='/addAuthor';">Crea un autor</button>
+<div th:switch="${autor}">
+    <h2 th:case="null">No hay autores aún!</h2>
+        <div th:case="*">
+            <h2>Autores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <!--<th>Nacimiento</th>-->
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="autor : ${autor}">
+                    <td th:text="${autor.nombreAutor}"></td>
+                    <td th:text="${autor.apellido}"></td>
+                    <!--<td th:text="${autor.fechaNacimein}"</td>-->
+                    <td><a th:href="@{/editAuthor/{id}(id=${autor.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${autor.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+</div>
