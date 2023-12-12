@@ -22,6 +22,13 @@ public class Reserva {
     @Column(name = "fecha_reserva")
     private Date fechaReserva;
 
+    @Column(name = "nombre_usuario")
+    private String nombreUsuario;
+
+    @Column(name = "nombre_titulo")
+    private String nombreTitulo;
+
+    // Getters and setters
 
     public Long getId() {
         return id;
@@ -37,6 +44,7 @@ public class Reserva {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        this.nombreUsuario = usuario.getNombre(); // Actualiza el nombre del usuario al asignarlo
     }
 
     public Titulo getTitulo() {
@@ -45,6 +53,7 @@ public class Reserva {
 
     public void setTitulo(Titulo titulo) {
         this.titulo = titulo;
+        this.nombreTitulo = titulo.getNombre(); // Actualiza el nombre del título al asignarlo
     }
 
     public Date getFechaReserva() {
@@ -53,5 +62,21 @@ public class Reserva {
 
     public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getNombreTitulo() {
+        return nombreTitulo;
+    }
+
+    public void setNombreTitulo(String nombreTitulo) {
+        this.nombreTitulo = nombreTitulo;
     }
 }
