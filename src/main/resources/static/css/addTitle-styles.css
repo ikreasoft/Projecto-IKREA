@@ -1,0 +1,111 @@
+/* addTitle-styles.css */
+
+/* Estilos para la barra de menú */
+.contenedor-menu-formulario{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    position: fixed;
+    width: 100%;
+    top:0;
+    background-color: #603813;
+    z-index: 1000;
+}
+nav {
+    text-align: center;
+    background-color: #603813;
+   }
+
+nav ul{
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    list-style: none;
+    margin-left: 15px;
+    padding: 12px 0;
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Estilos para el formulario */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #fff; /* Cambia el color de fondo según tu preferencia */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 2cm;
+}
+
+form label {
+    max-width: 600px;
+    margin: 10px ; /* Ajusta el margen para separar del contenido superior */
+    padding: 20px;
+    background-color: rgb(82, 71, 71) 141;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #603813;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #603813;
+    color: #fff;
+    cursor: pointer;
+}
+
+footer{
+    background:#3e3c3a;
+    /*padding: 40px 0 30px 0;*/
+    padding: 10px 0;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 200px;
+}
+
+.contenedor-footer{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #f2f2f2 ;
+}
+
+.content-foo{
+    text-align: center;
+}
+
+.content-foo h4 {
+    color:#f2f2f2;
+    border-bottom: 3px solid #f2f2f2;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}  
+
+.content-foo p {
+    color:#f2f2f2;
+}
+
+.titulo-final{
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 0 0;
+    color: rgb(101, 100, 103)
+}
