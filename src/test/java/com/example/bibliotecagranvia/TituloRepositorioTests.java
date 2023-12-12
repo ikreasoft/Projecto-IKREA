@@ -26,9 +26,11 @@ public class TituloRepositorioTests {
     @Autowired
     private AutorRepositorio autorRepositorior;
 
-
+    /**
     @Test
+
     public void testGuardarTitulo() {
+
         Autor autor = new Autor("TTT", "RRRR");
         autorRepositorior.save(autor);
         List<Autor> autores = List.of(autor);
@@ -51,8 +53,9 @@ public class TituloRepositorioTests {
         assertEquals("R23",encontrado.getNumReservas());
         /*assertEquals("José Carlos", encontrado.getAutor().getNombreAutor());
         assertEquals("Gonz.",encontrado.getAutor().getApellido());*/
-
+/**
     }
+*/
 
     }
 

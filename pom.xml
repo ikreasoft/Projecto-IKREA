@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>BibliotecaGranVia</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>BibliotecaGranVia</name>
 	<description>BibliotecaGranVia</description>
 	<properties>
@@ -71,7 +71,25 @@
 			<artifactId>hibernate-validator</artifactId> 
 			<version>8.0.0.Final</version>
 		</dependency>
-    </dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api -->
+		<dependency>
+			<groupId>org.sonarsource.sonarqube</groupId>
+			<artifactId>sonar-plugin-api</artifactId>
+			<version>9.4.0.54424</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.api.plugin/sonar-plugin-api -->
+		<dependency>
+			<groupId>org.sonarsource.api.plugin</groupId>
+			<artifactId>sonar-plugin-api</artifactId>
+			<version>10.3.0.1951</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
 
 	<build>
 		<plugins>
