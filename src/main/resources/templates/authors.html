@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Manage Authors</title>
+    <link rel="stylesheet" type="text/css" href="/css/addTitle-styles.css">
+</head>
+<body>
+    <div class="contenedor-menu-formulario">
+        <nav>  
+            <ul>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="addTitle">Añadir Título</a></li>
+                    <li><a href="addAuthor">Añadir Autor</a></li>
+                    <li><a href="authors">Autores</a></li>
+                    <li><a href="updateAuthor">Modificar Autor</a></li>
+                    <li><a href="users/new">Registrar Usuario</a></li>
+                   </ul>
+            </ul>
+        </nav>  
+    </div>
+
+    <button onclick="location.href='/addAuthor'" style="margin-top: 50px;">Crea un autor</button>
+
+    <div th:switch="${autores}">
+        <h2 th:case="null">No hay autores aún!</h2>
+        <div th:case="*">
+            <h2>Autores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <!--<th>Nacimiento</th>-->
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="autor : ${autores}">
+                        <td th:text="${autor.nombreAutor}"></td>
+                        <td th:text="${autor.apellido}"></td>
+                        <!--<td th:text="${autor.fechaNacimiento}"</td>-->
+                        <td><a th:href="@{/edit/{id}(id=${autor.id})}">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${autor.id})}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Teléfono</h4>
+                <p>976877267</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>GV-library@gmail.com</p>
+            </div>
+            <div class="content-foo">
+                <h4>Ubicación</h4>
+                <p>Calle Gran Vía, 7 (Madrid)</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
+    </footer>
+</body>
+</html>
