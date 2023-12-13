@@ -2,7 +2,7 @@
 <!-- Price box minimal--><!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
   <head>
-    <title>GRAN VÍA - Registro Titulos</title>
+    <title>GRAN VÍA - Registro Autor</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
         <div class="cssload-container">
           <div class="cssload-speeding-wheel"></div>          
         </div>        
-        <p>Generando titulos...</p>
+        <p>Generando autores...</p>
       </div>
     </div>
     <div class="page">
@@ -73,39 +73,20 @@
           <div class="row">
             <div class="col-xl-4">                                        
               <main> 
-                <form th:action="@{/addTitle}" th:object="${titulo}" method="post" class="form-group" id="formularios">              
-                    <!--
-                    <div class="form-group">
-                      <label for="autor">Autor:</label>
-                      <select name="autor" th:field="*{autor}">
-                          <option value="">Select an author</option>
-                          <th:block th:each="author : ${autores}">
-                              <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" th:selected="${author.id== titulo.autor.id}"></option>
-                          </th:block>
-                      </select>
-                      <br><br>
-                    </div>
-                    -->
-                    <div class="form-group">
-                      <label for="titulo">Titulo:</label> <br>                
-                      <input type="text" th:field="${titulo.nombre}"/>
-                      <!--<small class="form-text text-muted">Registre los títulos rellenando todos los campos.</small>-->
-                    </div>
-
-                    <div class="form-group">
-                      <label for="isbn">Isbn:</label> <br>
-                      <input type="text" th:field="*{isbn}">
-                      <small class="form-text text-muted">Nº de ISBN, debe ser único.</small>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="numReserva">Número reserva:</label> <br>
-                      <input type="text" th:field="*{numReservas}"/><br/><br/>
-                    </div>
-
-                    <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/index.html'"/>
-                  </div>
-                </form>
+                <form action="#" th:action="@{/addAuthor}" th:object="${autor}" method="post">
+                  <label for="nombre">Nombre</label>
+                  <br/>
+                  <input type="text" th:field="*{nombreAutor}" id="nombre" placeholder="Nombre">
+                  <br/>
+                  <span th:if="${#fields.hasErrors('nombreAutor')}" th:errors="*{nombreAutor}"></span>
+                  <label for="apellido">Apellido</label><br/>
+                  <input type="text" th:field="*{apellido}" id="apellido" placeholder="Apellido">
+                  <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>  
+                  <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span><br/>
+                  <label for="nacimiento">Nacimiento</label><br/>
+                  <input type="date" th:field="*{fechaNacimiento}"/><br/>
+                  <input type="submit" value="Crear Autor">  
+              </form>
             </main>
                          
             </div>
