@@ -12,7 +12,7 @@ import com.example.bibliotecagranvia.entidades.Usuario;
 import java.util.List;
 
 @Controller
-public class ControladorUsuario {
+public class UsuarioController {
     @Autowired
     private ServicioUsuario service;
 

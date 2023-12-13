@@ -15,8 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "autor")
 public class Autor {
-
-
     @Id
     @SequenceGenerator(name="yourSequenceGenerator", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "yourTableGenerator")
