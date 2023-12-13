@@ -22,18 +22,18 @@ public class TituloController {
     @GetMapping("/titles")
     public String showTitulos(Model model){
         model.addAttribute("titulos", tituloRepositorio.findAll());
-        return "title/titulos";
+        return "title/titles";
     }
     @GetMapping("/addTitle")
     public String addTitle(Model model){
         model.addAttribute("titulo", new Titulo());
         model.addAttribute("autoresTodos", autorRepositorio.findAll());
-        return "title/addTitles";
+        return "title/addTitle";
     }
     @PostMapping("/addTitle")
     public String addTitlePost(@ModelAttribute Titulo titulo,Model model){
         tituloRepositorio.save(titulo);
-        return "redirect:titles";
+        return "redirect:readTitles";
     }
     @GetMapping("/editTitle/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
@@ -53,13 +53,13 @@ public class TituloController {
             return "updateTitle";
         }*/
         tituloRepositorio.save(titulo);
-        return "redirect:titles";
+        return "redirect:readTitles";
     }
      @GetMapping("/deleteTitle/{id}")
     public String deleteUser(@PathVariable("id") long id, Model model) {
         Titulo titulo = tituloRepositorio.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id de titulo no valido:" + id));
         tituloRepositorio.delete(titulo);
-        return "redirect:titles";
+        return "redirect:readTitles";
     }
 }

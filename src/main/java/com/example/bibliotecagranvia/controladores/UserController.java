@@ -12,7 +12,7 @@ import com.example.bibliotecagranvia.entidades.Usuario;
 import java.util.List;
 
 @Controller
-public class UsuarioController {
+public class UserController {
     @Autowired
     private ServicioUsuario service;
 
@@ -21,21 +21,21 @@ public class UsuarioController {
         List<Usuario> listUsuario = service.listAll();
         model.addAttribute("listUsers", listUsuario);
 
-        return "Usuarios";
+        return "user/users";
     }
 
     @GetMapping("/users/new")
     public String showNewForm(Model model) {
         model.addAttribute("usuario", new Usuario());  // Cambiado "Usuario" a "usuario"
         model.addAttribute("pageTitle", "Añadir nuevo usuario");
-        return "Formulario_usuario";
+        return "user/addUser";
     }
 
     @PostMapping("/users/save")
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
-        return "redirect:/users";
+        return "redirect:/user/users";
     }
 
     @GetMapping("/users/edit/{id}")
@@ -44,10 +44,10 @@ public class UsuarioController {
             Usuario usuario = service.get(id);
             model.addAttribute("usuario", usuario);  // Cambiado "user" a "usuario"
             model.addAttribute("pageTitle", "Editar Usuario (ID: " + id + ")");
-            return "Formulario_usuario";
+            return "addUser";
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
-            return "redirect:/users";
+            return "redirect:/user/users";
         }
     }
 
@@ -59,7 +59,7 @@ public class UsuarioController {
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:/users";
+        return "redirect:/user/users";
     }
 }
 

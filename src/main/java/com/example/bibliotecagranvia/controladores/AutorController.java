@@ -19,7 +19,7 @@ public class AutorController {
     @GetMapping("/authors")
     public String showHomePage(Model model){
         model.addAttribute("autores", authorRepository.findAll());
-        return "author/autores";
+        return "author/authors";
     }
     @GetMapping("/addAuthor")
     public String addAuthor(Autor autor){
