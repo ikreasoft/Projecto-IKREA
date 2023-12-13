@@ -19,16 +19,21 @@ public class TituloController {
     TituloRepositorio tituloRepositorio;
     @Autowired
     AutorRepositorio autorRepositorio;
+    @GetMapping("/titles")
+    public String showTitulos(Model model){
+        model.addAttribute("titulos", tituloRepositorio.findAll());
+        return "title/titulos";
+    }
     @GetMapping("/addTitle")
     public String addTitle(Model model){
         model.addAttribute("titulo", new Titulo());
         model.addAttribute("autoresTodos", autorRepositorio.findAll());
-        return "addTitle";
+        return "title/addTitles";
     }
     @PostMapping("/addTitle")
     public String addTitlePost(@ModelAttribute Titulo titulo,Model model){
         tituloRepositorio.save(titulo);
-        return "redirect:/";
+        return "redirect:titles";
     }
     @GetMapping("/editTitle/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
@@ -37,7 +42,7 @@ public class TituloController {
 
         model.addAttribute("titulo", titulo);
         model.addAttribute("autoresTodos", autorRepositorio.findAll());
-        return "updateTitle";
+        return "title/updateTitle";
     }
     @PostMapping("/editTitle/{id}")
     public String updateTitlePost(@PathVariable("id") long id, Titulo titulo,
@@ -48,6 +53,13 @@ public class TituloController {
             return "updateTitle";
         }*/
         tituloRepositorio.save(titulo);
-        return "redirect:/";
+        return "redirect:titles";
+    }
+     @GetMapping("/deleteTitle/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        Titulo titulo = tituloRepositorio.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Id de titulo no valido:" + id));
+        tituloRepositorio.delete(titulo);
+        return "redirect:titles";
     }
 }

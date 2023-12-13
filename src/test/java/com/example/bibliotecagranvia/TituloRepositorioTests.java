@@ -14,7 +14,6 @@ import org.springframework.test.annotation.Rollback;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -39,24 +38,19 @@ public class TituloRepositorioTests {
         assertNotNull(titulo.getId());
     }
 
-    @Test
-    public void testBuscarPorTitulo(){
-        Autor autor = new Autor("José Carlos","Gonz.");
-        autorRepositorior.save(autor);
-        List<Autor> autores = List.of(autor);
-        Titulo titulo = new Titulo("El bos","ISBN1","R23",autores);
-        tituloRepositorio.save(titulo);
-
-        Titulo encontrado = tituloRepositorio.findByNombre("El bos");
-        assertNotNull(encontrado);
-        assertEquals("ISBN1",encontrado.getIsbn());
-        assertEquals("R23",encontrado.getNumReservas());
-        /*assertEquals("José Carlos", encontrado.getAutor().getNombreAutor());
-        assertEquals("Gonz.",encontrado.getAutor().getApellido());*/
+   */
 /**
     }
 */
-
+ @Test
+    public void testBuscarPorTitulo(){
+        Autor autor = new Autor("José Carlos","Gonz.");
+        autorRepositorior.save(autor);
+        long L1 = 1;
+        Titulo encontrado = tituloRepositorio.findById(L1).get();
+        assertNotNull(encontrado);
+        assertEquals("'978-84-206-8184-2",encontrado.getIsbn());
+    }
     }
 
 

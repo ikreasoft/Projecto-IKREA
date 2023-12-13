@@ -68,7 +68,7 @@
         <div class="container">
           <!-- Ventana flotante para el registro de nuevos autores. -->
           <div class="ventana_flotante">
-            <button class="ventana_flotante" type="button" onclick="location.href='/addAuthor'">Crear nuevo autor</button>
+            <button class="ventana_flotante" type="button" onclick="location.href='addAuthor'">Crear nuevo autor</button>
           </div>
           <div class="row">
             <div class="col-xl-8">              
@@ -89,8 +89,8 @@
                     <td th:text="${autor.nombreAutor}">&nbsp</td>
                     <td th:text="${autor.apellido}">&nbsp</td>
                     <!--<td th:text="${autor.fechaNacimiento}"</td>-->
-                    <td><a th:href="@{/edit/{id}(id=${autor.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${autor.id})}">Delete</a></td>
+                    <td><a th:href="@{/editAuthor/{id}(id=${autor.id})}">Edit</a></td>
+                    <td><a th:href="@{/deleteAuthor/{id}(id=${autor.id})}">Delete</a></td>
                   </tr>                  
                 </tbody>
               </table>                           

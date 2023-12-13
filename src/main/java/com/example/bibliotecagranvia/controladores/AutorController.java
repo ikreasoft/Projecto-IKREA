@@ -19,21 +19,21 @@ public class AutorController {
     @GetMapping("/authors")
     public String showHomePage(Model model){
         model.addAttribute("autores", authorRepository.findAll());
-        return "authors";
+        return "author/autores";
     }
     @GetMapping("/addAuthor")
     public String addAuthor(Autor autor){
-        return "addAuthor";
+        return "author/addAuthor";
     }
     @PostMapping("/addAuthor")
     public String addAuthorPost(@Valid Autor autor, BeanPropertyBindingResult result, Model model){
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
-            return "addAuthor";
+            return "author/addAuthor";
         }
 
         authorRepository.save(autor);
-        return "redirect:/authors";
+        return "redirect:author/authors";
     }
     @GetMapping("/editAuthor/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
@@ -41,7 +41,7 @@ public class AutorController {
                 .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
 
         model.addAttribute("autor", autor);
-        return "updateAuthor";
+        return "author/updateAuthor";
     }
     @PostMapping("/editAuthor/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid Autor autor,
@@ -49,7 +49,7 @@ public class AutorController {
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
             autor.setId(id);
-            return "updateAuthor";
+            return "author/updateAuthor";
         }
         System.out.println("a  das adsfkjasñldkfjasñldkfjñsadlokfha");
         for(int i=0;i<30;i++)
@@ -58,12 +58,12 @@ public class AutorController {
         return "redirect:/authors";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteAuthor/{id}")
     public String deleteUser(@PathVariable("id") long id, Model model) {
         Autor autor = authorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
         authorRepository.delete(autor);
-        return "redirect:/authors";
+        return "redirect:author/authors";
     }
 
 }
