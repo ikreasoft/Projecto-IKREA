@@ -20,25 +20,24 @@ public class UserController {
     public String showUserList(Model model) {
         List<Usuario> listUsuario = service.listAll();
         model.addAttribute("listUsers", listUsuario);
-
         return "user/users";
     }
 
-    @GetMapping("/users/new")
+    @GetMapping("/addUser")
     public String showNewForm(Model model) {
-        model.addAttribute("usuario", new Usuario());  // Cambiado "Usuario" a "usuario"
+        model.addAttribute("usuario", new Usuario()); 
         model.addAttribute("pageTitle", "Añadir nuevo usuario");
         return "user/addUser";
     }
 
-    @PostMapping("/users/save")
+    @PostMapping("/addUser")
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
         return "redirect:/user/users";
     }
 
-    @GetMapping("/users/edit/{id}")
+    @GetMapping("/updateUser/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Usuario usuario = service.get(id);
@@ -51,7 +50,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);

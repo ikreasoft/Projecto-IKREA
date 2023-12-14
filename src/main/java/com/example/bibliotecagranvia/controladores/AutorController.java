@@ -51,9 +51,6 @@ public class AutorController {
             autor.setId(id);
             return "author/updateAuthor";
         }
-        System.out.println("a  das adsfkjasñldkfjasñldkfjñsadlokfha");
-        for(int i=0;i<30;i++)
-            System.out.println("");
         authorRepository.save(autor);
         return "redirect:/authors";
     }

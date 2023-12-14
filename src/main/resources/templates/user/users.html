@@ -68,15 +68,14 @@
         <div class="container">
           <!-- Ventana flotante para el registro de nuevos autores. -->
           <div class="ventana_flotante">
-            <button class="ventana_flotante" type="button" onclick="location.href='/addTitulos.html'">Crear nuevo usuario</button>
+            <button class="ventana_flotante" type="button" onclick="location.href='/addUser'">Crear nuevo usuario</button>
           </div>          
             <div class="row">
               <div class="col-xl-8">              
-                <!-- Tabla de autores -->
+                <!-- Tabla de usuarios -->
                 <table class="table">
                   <thead class="thead-dark">
-                    <tr>                    
-                      <th scope="col">ID</th>
+                    <tr>
                       <th scope="col">Email</th>
                       <th scope="col">Nombre</th>
                       <th scope="col">Apellidos</th>
@@ -89,7 +88,6 @@
                   </thead>                  
                   <tbody>
                     <tr th:each="usuario : ${listUsers}">
-                      <td th:text="${usuario.id}"></td>
                       <td th:text="${usuario.email}"></td>
                       <td th:text="${usuario.nombre}"></td>
                       <td th:text="${usuario.apellidos}"></td>
@@ -192,9 +190,9 @@
             </div>
             <div class="col-lg-6 col-xl-6">
               <ul class="list-inline list-inline-lg text-uppercase">
-                <li><a href="about-us.html">Sobre nosotros</a></li>
-                <li><a href="building.html">Equipo Gran Vía</a></li>
-                <li><a href="building.html">Blog</a></li>
+                <li><a href="about-us">Sobre nosotros</a></li>
+                <li><a href="building">Equipo Gran Vía</a></li>
+                <li><a href="building">Blog</a></li>
               </ul>
             </div>
           </div>

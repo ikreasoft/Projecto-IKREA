@@ -15,11 +15,10 @@
             <nav>  
                 <ul>
                  <li><a href="/">Inicio</a></li>
-                 <li><a href="addTitle">Añadir Título</a></li>
-                 <li><a href="addAuthor">Añadir Autor</a></li>
-                 <li><a href="authors">Autores</a></li>
-                 <li><a href="updateAuthor">Modificar Autor</a></li>
-                 <li><a href="users/new">Registrar Usuario</a></li>
+                 <li><a href="/addTitle">Añadir Título</a></li>
+                 <li><a href="/addAuthor">Añadir Autor</a></li>
+                 <li><a href="/authors">Autores</a></li>
+                 <li><a href="/users/new">Registrar Usuario</a></li>
                 </ul>
             </nav> 
         </div>
@@ -27,7 +26,7 @@
      <main> 
 
         <form action="#" 
-        th:action="@{/update/{id}(id=${autor.id})}" 
+        th:action="@{/editAuthor/{id}(id=${autor.id})}" 
         th:object="${autor}" 
         method="post">
         <label for="nombre">Nombre</label>

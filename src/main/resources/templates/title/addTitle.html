@@ -75,18 +75,7 @@
             <div class="col-xl-4">                                        
               <main> 
                 <form th:action="@{/addTitle}" th:object="${titulo}" method="post" class="form-group" id="formularios">              
-                    <!--
-                    <div class="form-group">
-                      <label for="autor">Autor:</label>
-                      <select name="autor" th:field="*{autor}">
-                          <option value="">Select an author</option>
-                          <th:block th:each="author : ${autores}">
-                              <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" th:selected="${author.id== titulo.autor.id}"></option>
-                          </th:block>
-                      </select>
-                      <br><br>
-                    </div>
-                    -->
+                    
                     <div class="form-group">
                       <label for="titulo">Titulo:</label> <br>                
                       <input type="text" th:field="${titulo.nombre}"/>
@@ -104,7 +93,17 @@
                       <input type="number" th:field="*{numReservas}"/><br/><br/>
                     </div>
 
-                    <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/index.html'"/>
+                    <div class="form-group">
+                      <label for="autor">Autor:</label> <br>
+                      <select name="autor" multiple="multiple" th:field="*{autor}">
+                          <option value="">Select an author</option>
+                          <th:block th:each="author : ${autoresTodos}">
+                              <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" ></option>
+                          </th:block>
+                      </select>
+                      <br><br>
+                    </div>
+                    <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/'"/>
                   </div>
                 </form>
             </main>
@@ -199,9 +198,9 @@
             </div>
             <div class="col-lg-6 col-xl-6">
               <ul class="list-inline list-inline-lg text-uppercase">
-                <li><a href="about-us.html">Sobre nosotros</a></li>
-                <li><a href="building.html">Equipo Gran Vía</a></li>
-                <li><a href="building.html">Blog</a></li>
+                <li><a href="about-us">Sobre nosotros</a></li>
+                <li><a href="building">Equipo Gran Vía</a></li>
+                <li><a href="building">Blog</a></li>
               </ul>
             </div>
           </div>
