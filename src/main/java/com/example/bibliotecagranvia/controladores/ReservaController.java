@@ -75,9 +75,9 @@ public class ReservaController {
 
             reservaRepositorio.save(reserva);
 
-            return "redirect:/buscar";
+            return "redirect:/confirmacion_reserva"; // Redirige a la página de confirmación
         } else {
-            return "redirect:/error"; // Página de error o redirigir a algún lugar correspondiente
+            return "redirect:/confirmacion_reserva"; // Página de error o redirigir a algún lugar correspondiente
         }
     }
 }
