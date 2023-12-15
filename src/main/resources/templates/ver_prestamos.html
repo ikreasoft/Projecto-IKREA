@@ -12,22 +12,19 @@
 <body>
 
 <div class="contenedor-menu-formulario">
-
     <nav>
         <ul>
-            <ul>
-                <li><a href="/">Catalogo de Titulos</a></li>
-                <li><a href="addTitle">Gestionar Título</a></li>
-                <!--<li><a href="author">Gestionar Autor</a></li>-->
-                <li><a href="authors">Gestionar Autores</a></li>
-                <li><a href="users/new">Registrar Usuario</a></li>
-                <li><a href="users">Ver listado de Usuario</a></li>
-            </ul>
+            <li><a href="/">Catalogo de Titulos</a></li>
+            <li><a href="addTitle">Gestionar Título</a></li>
+            <!--<li><a href="author">Gestionar Autor</a></li>-->
+            <li><a href="authors">Gestionar Autores</a></li>
+            <li><a href="users/new">Registrar Usuario</a></li>
+            <li><a href="users">Ver listado de Usuario</a></li>
         </ul>
     </nav>
 </div>
 
-<main style="padding-top: 80px;"> <!-- Add padding to the top of the main content -->
+<main style="padding-top: 80px;">
     <div class="container-fluid text-center">
         <div><h2>Catalogo de Titulos</h2></div>
 
@@ -36,14 +33,16 @@
         </div>
 
         <div>
+            <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
             <table class="table table-bordered">
                 <thead class="thead-dark">
                 <tr>
                     <th>Nombre de Usuario</th>
-                    <th>Nombre de Titulo</th>
-                    <!--<th>ISBN</th>-->
-                    <th>fecha de Reserva</th>
-                    <th></th>
+                    <th>Nombre de Título</th>
+                    <th>ISBN</th>
+                    <th>Fecha de Préstamo</th>
+                    <th>Fecha de Devolución</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
 
@@ -51,8 +50,22 @@
                 <tr th:each="prestamo : ${listaPrestamo}">
                     <td th:text="${prestamo.usuario.nombre}"></td>
                     <td th:text="${prestamo.titulo.nombre}"></td>
+                    <td th:text="${prestamo.titulo.isbn}"></td>
                     <td th:text="${#dates.format(prestamo.fechaPrestamo, 'dd-MM-yyyy')}"></td>
                     <td th:text="${#dates.format(prestamo.fechaDevolucion, 'dd-MM-yyyy')}"></td>
+                    <td>
+                        <form action="/renovar" method="post">
+                            <input type="hidden" name="isbn" th:value="${prestamo.titulo.isbn}">
+                            <input type="hidden" name="nombreUsuario" th:value="${prestamo.usuario.nombre}">
+                            <input type="hidden" name="tituloNombre" th:value="${prestamo.titulo.nombre}">
+                            <input type="submit" value="Renovar" class="btn btn-primary">
+                        </form>
+
+                        <form action="/devolver" method="post">
+                            <input type="hidden" name="prestamoId" th:value="${prestamo.id}">
+                            <input type="submit" value="Devolver" class="btn btn-danger">
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -77,6 +90,18 @@
     </div>
     <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
 </footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#busqueda').on('input', function() {
+            var searchText = $(this).val().toLowerCase();
+            $('tbody tr').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

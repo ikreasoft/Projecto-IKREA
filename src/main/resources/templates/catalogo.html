@@ -12,16 +12,11 @@
 <body>
 
 <div class="contenedor-menu-formulario">
-
     <nav>
         <ul>
             <ul>
                 <li><a href="/">Catalogo de Titulos</a></li>
-                <li><a href="addTitle">Gestionar Título</a></li>
-                <!--<li><a href="author">Gestionar Autor</a></li>-->
-                <li><a href="authors">Gestionar Autores</a></li>
-                <li><a href="users/new">Registrar Usuario</a></li>
-                <li><a href="users">Ver listado de Usuario</a></li>
+                <li><a href="identificar" class="btn btn-primary">Realizar Préstamo</a></li>
             </ul>
         </ul>
     </nav>
@@ -33,6 +28,12 @@
 
         <div th:if="${message}" class="alert alert-success text-center">
             [[${message}]]
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <div>
+            <label for="busqueda">Buscar:</label>
+            <input type="text" id="busqueda" name="busqueda" placeholder="Buscar título...">
         </div>
 
         <div>
@@ -48,9 +49,8 @@
                 <tbody>
                 <tr th:each="titulo : ${listTitles}">
                     <td th:text="${titulo.nombre}"></td>
-                    <td th:text="${titulo.isbn}"></td>s
+                    <td th:text="${titulo.isbn}"></td>
                     <!--<td th:text="${titulo.autores}"></td>-->
-
                 </tr>
                 </tbody>
             </table>
@@ -76,5 +76,17 @@
     <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
 </footer>
 
+<!-- Agregar jQuery al final del body -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#busqueda').on('input', function() {
+            var searchText = $(this).val().toLowerCase();
+            $('tbody tr').filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+            });
+        });
+    });
+</script>
 </body>
 </html>
