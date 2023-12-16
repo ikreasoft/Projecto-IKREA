@@ -26,7 +26,7 @@
 
 <main style="padding-top: 80px;">
     <div class="container-fluid text-center">
-        <div><h2>Catalogo de Titulos</h2></div>
+        <div><h2>Prestamos</h2></div>
 
         <div th:if="${message}" class="alert alert-success text-center">
             [[${message}]]
@@ -55,6 +55,7 @@
                     <td th:text="${#dates.format(prestamo.fechaDevolucion, 'dd-MM-yyyy')}"></td>
                     <td>
                         <form action="/renovar" method="post">
+                            <input type="hidden" name="prestamoId" th:value="${prestamo.id}">
                             <input type="hidden" name="isbn" th:value="${prestamo.titulo.isbn}">
                             <input type="hidden" name="nombreUsuario" th:value="${prestamo.usuario.nombre}">
                             <input type="hidden" name="tituloNombre" th:value="${prestamo.titulo.nombre}">

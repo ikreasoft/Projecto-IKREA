@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Usuarios Registrados</title>
+    <title>Catálogo de Títulos</title>
     <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
     <link rel="stylesheet" href="css/addTitle-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-
 <div class="contenedor-menu-formulario">
     <nav>
         <ul>
-            <ul>
-                <li><a href="/">Catalogo de Titulos</a></li>
-                <li><a href="identificar" class="btn btn-primary">Realizar Préstamo</a></li>
-            </ul>
+            <li><a href="/">Catálogo de Títulos</a></li>
+            <li><a href="identificar" class="btn btn-primary">Realizar Préstamo</a></li>
         </ul>
     </nav>
 </div>
 
-<main style="padding-top: 80px;"> <!-- Add padding to the top of the main content -->
+<main style="padding-top: 80px;">
     <div class="container-fluid text-center">
-        <div><h2>Catalogo de Titulos</h2></div>
+        <div><h2>Catálogo de Títulos</h2></div>
 
         <div th:if="${message}" class="alert alert-success text-center">
             [[${message}]]
         </div>
 
-        <!-- Barra de búsqueda -->
         <div>
             <label for="busqueda">Buscar:</label>
             <input type="text" id="busqueda" name="busqueda" placeholder="Buscar título...">
@@ -40,17 +36,31 @@
             <table class="table table-bordered">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Nombre de Titulo</th>
+                    <th>ID</th>
+                    <th>Nombre de Título</th>
                     <th>ISBN</th>
-                    <th></th>
+                    <th>Cantidad</th> <!-- Nueva columna para mostrar la cantidad -->
+                    <th>Acciones</th> <!-- Columna para botones -->
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr th:each="titulo : ${listTitles}">
+                    <td th:text="${titulo.id}"></td> <!-- Muestra el ID -->
                     <td th:text="${titulo.nombre}"></td>
                     <td th:text="${titulo.isbn}"></td>
-                    <!--<td th:text="${titulo.autores}"></td>-->
+                    <td th:text="${titulo.cantidadDisponible}"></td> <!-- Muestra la cantidad -->
+                    <td>
+                        <form action="/quitarTitulo" method="post">
+                            <input type="hidden" name="id" th:value="${titulo.id}" /> <!-- Envía el ID al formulario -->
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                        <form action="/modificarCantidad" method="post">
+                            <input type="hidden" name="id" th:value="${titulo.id}" /> <!-- Envía el ID al formulario -->
+                            <input type="number" name="nuevaCantidad" placeholder="Nueva cantidad" required>
+                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -76,7 +86,6 @@
     <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
 </footer>
 
-<!-- Agregar jQuery al final del body -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {

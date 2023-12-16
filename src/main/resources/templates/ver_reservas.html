@@ -12,11 +12,10 @@
 <body>
 
 <div class="contenedor-menu-formulario">
-
   <nav>
     <ul>
       <ul>
-        <li><a href="/">Catalogo de Titulos</a></li>
+        <li><a href="/">Reservas</a></li>
         <li><a href="addTitle">Gestionar Título</a></li>
         <!--<li><a href="author">Gestionar Autor</a></li>-->
         <li><a href="authors">Gestionar Autores</a></li>
@@ -27,7 +26,7 @@
   </nav>
 </div>
 
-<main style="padding-top: 80px;"> <!-- Add padding to the top of the main content -->
+<main style="padding-top: 80px;">
   <div class="container-fluid text-center">
     <div><h2>Catalogo de Titulos</h2></div>
 
@@ -36,6 +35,7 @@
     </div>
 
     <div>
+      <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
       <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
@@ -43,7 +43,7 @@
           <th>Nombre de Titulo</th>
           <!--<th>ISBN</th>-->
           <th>fecha de Reserva</th>
-          <th></th>
+          <th>Quitar Reserva</th>
         </tr>
         </thead>
 
@@ -51,8 +51,14 @@
         <tr th:each="reserva : ${listaReservas}">
           <td th:text="${reserva.usuario.nombre}"></td>
           <td th:text="${reserva.titulo.nombre}"></td>
-        <!--  <td th:text="${reserva.titulo.isbn}"></td>-->
+          <!--  <td th:text="${reserva.titulo.isbn}"></td>-->
           <td th:text="${#dates.format(reserva.fechaReserva, 'dd-MM-yyyy')}"></td>
+          <td>
+            <form th:action="@{/quitarReserva}" method="post">
+              <input type="hidden" name="reservaId" th:value="${reserva.id}" />
+              <button type="submit" class="btn btn-danger">Quitar Reserva</button>
+            </form>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -77,6 +83,18 @@
   </div>
   <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
 </footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#busqueda').on('input', function() {
+      var searchText = $(this).val().toLowerCase();
+      $('tbody tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1)
+      });
+    });
+  });
+</script>
 
 </body>
 </html>

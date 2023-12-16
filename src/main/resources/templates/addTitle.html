@@ -2,69 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Página web IKREA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Título</title>
     <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
     <link rel="stylesheet" href="css/addTitle-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-        <div class="contenedor-menu-formulario">
-            
-            <nav>  
-                <ul>
-                 <li><a href="/">Inicio</a></li>   
-                 <li><a href="addTitle">Añadir Título</a></li>
-                 <li><a href="authors">Autores</a></li>
-                 <li><a href="addAuthor">Añadir Autor</a></li>
-                <!-- <li><a href="updateAuthor">Modificar Título</a></li>-->
-                 <li><a href="users/new">Registrar Usuario</a></li>
-                </ul>
-            </nav>  
-        </div>
-        
-     <main> 
-<form th:action="@{/addTitle}" th:object="${titulo}" method="post">
-    <!--<label for="autor">Autor:</label>
-    <select name="autor" th:field="*{autor}">
-         <option value="">Select an author</option>
-         <th:block th:each="author : ${autores}">
-             <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" th:selected="${author.id== titulo.autor.id}"></option>
-         </th:block>
-     </select>
-     <br><br>-->
-    <label for="titulo">Titulo:</label>
-    
-    <input type="text" th:field="${titulo.nombre}"/>
-    <br><br>
-    
- 
-    
-    <label for="isbn">Isbn:</label>
-    <input type="text" th:field="*{isbn}"><br/><br/>
-    
-    <label for="numReserva">Número reserva:</label>
-    <input type="text" th:field="*{numReservas}"/><br/><br/>
-    
-    <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/index.html'"/>
-</form>
+<div class="contenedor-menu-formulario">
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="addTitle">Añadir Título</a></li>
+            <li><a href="authors">Autores</a></li>
+            <li><a href="addAuthor">Añadir Autor</a></li>
+            <li><a href="users/new">Registrar Usuario</a></li>
+        </ul>
+    </nav>
+</div>
+
+<main>
+    <form th:action="@{/addTitle}" th:object="${titulo}" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" th:field="${titulo.nombre}" />
+        <br><br>
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" th:field="*{isbn}" />
+        <br><br>
+
+        <label for="numReserva">Número de Reserva:</label>
+        <input type="text" th:field="*{numReservas}" />
+        <br><br>
+
+        <!-- Campo para la cantidad de títulos disponibles -->
+        <label for="cantidadDisponible">Cantidad de títulos disponibles:</label>
+        <input type="number" th:field="*{cantidadDisponible}" min="0" />
+        <br><br>
+
+        <input type="submit" value="Crear Título" />
+    </form>
 </main>
 
 <footer>
     <div class="contenedor-footer">
-        <div class="content-foo">
-            <h4>Teléfono</h4>
-            <p>976877267</p>
-        </div>
-        <div class="content-foo">
-            <h4>Email</h4>
-            <p>GVlibrary@gmail.com</p>
-        </div>
-        <div class="content-foo">
-            <h4>Ubicación</h4>
-            <p>Calle Gran Vía, 7 (Madrid)</p>
-        </div>
+        <!-- Información de contacto, dirección, etc. -->
     </div>
     <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
 </footer>

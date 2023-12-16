@@ -1,7 +1,6 @@
 package com.example.bibliotecagranvia.controladores;
 
 import com.example.bibliotecagranvia.entidades.Prestamo;
-import com.example.bibliotecagranvia.entidades.Reserva;
 import com.example.bibliotecagranvia.entidades.Titulo;
 import com.example.bibliotecagranvia.entidades.Usuario;
 import com.example.bibliotecagranvia.persistencia.PrestamoRepositorio;
@@ -50,6 +49,10 @@ public class PrestamoController {
     public String confirmacionPrestamo() {
         return "confirmacion_prestamo"; // HTML con el menú de opciones
     }
+    @GetMapping("/titulo_ya_prestado")
+    public String titulo_ya_prestado() {
+        return "titulo_ya_prestado"; // HTML con el menú de opciones
+    }
 
     @PostMapping("/prestamo")
     public String confirmarPrestamo(@RequestParam String nombreUsuario, @RequestParam String tituloNombre, Model model) {
@@ -87,31 +90,47 @@ public class PrestamoController {
         Optional<Titulo> tituloOptional = tituloRepositorio.findByNombre(tituloNombre);
 
         if (usuarioOptional.isPresent() && tituloOptional.isPresent()) {
-            Usuario usuario = usuarioOptional.get();
             Titulo titulo = tituloOptional.get();
 
-            // Crear un nuevo préstamo
-            Prestamo prestamo = new Prestamo();
-            prestamo.setUsuario(usuario); // Asignar el usuario al préstamo
-            prestamo.setTitulo(titulo); // Asignar el título al préstamo
-            prestamo.setNombreUsuario(usuario.getNombre()); // Obtener el nombre del usuario
-            prestamo.setNombreTitulo(titulo.getNombre()); // Obtener el nombre del título
-            prestamo.setIsbn(titulo.getIsbn()); // Establecer el ISBN del libro
+            // Verificar si el título está disponible
+            if (titulo.getCantidadDisponible() > 0) {
+                Usuario usuario = usuarioOptional.get();
 
-            // Obtener la fecha actual como fecha de inicio del préstamo
-            Date fechaInicioPrestamo = new Date();
-            prestamo.setFechaPrestamo(fechaInicioPrestamo); // Establecer la fecha de inicio del préstamo
+                // Reducir la cantidad disponible en 1
+                int cantidadDisponible = titulo.getCantidadDisponible();
+                titulo.setCantidadDisponible(cantidadDisponible - 1);
+                // Crear un nuevo préstamo
 
-            // Calcular la fecha de devolución (15 días después del préstamo)
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(new Date());
-            calendar.add(Calendar.DAY_OF_YEAR, 15);
-            Date fechaDevolucion = calendar.getTime();
-            prestamo.setFechaDevolucion(fechaDevolucion); // Establecer la fecha de devolución
+                Prestamo prestamo = new Prestamo();
+                prestamo.setUsuario(usuario); // Asignar el usuario al préstamo
+                prestamo.setTitulo(titulo); // Asignar el título al préstamo
+                prestamo.setNombreUsuario(usuario.getNombre()); // Obtener el nombre del usuario
+                prestamo.setNombreTitulo(titulo.getNombre()); // Obtener el nombre del título
+                prestamo.setIsbn(titulo.getIsbn()); // Establecer el ISBN del libro
 
-            // Guardar el préstamo en la base de datos
-            prestamoRepositorio.save(prestamo);
-            return confirmacionPrestamo();
+                // Obtener la fecha actual como fecha de inicio del préstamo
+                Date fechaInicioPrestamo = new Date();
+                prestamo.setFechaPrestamo(fechaInicioPrestamo); // Establecer la fecha de inicio del préstamo
+
+                // Calcular la fecha de devolución (15 días después del préstamo)
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(new Date());
+                calendar.add(Calendar.DAY_OF_YEAR, 15);
+                Date fechaDevolucion = calendar.getTime();
+                prestamo.setFechaDevolucion(fechaDevolucion); // Establecer la fecha de devolución
+
+                // Actualizar la disponibilidad del título
+                if (cantidadDisponible == 1) {
+                    titulo.setDisponible(false); // Marcar como no disponible si era el último ejemplar
+                }
+
+                tituloRepositorio.save(titulo);
+                prestamoRepositorio.save(prestamo);
+
+                return confirmacionPrestamo();
+            } else {
+                return titulo_ya_prestado();
+            }
         } else {
             return "redirect:/usuario_o_titulo_no_encontrado";
         }
@@ -123,59 +142,60 @@ public class PrestamoController {
 
         if (prestamoOptional.isPresent()) {
             Prestamo prestamo = prestamoOptional.get();
+            Titulo titulo = prestamo.getTitulo();
+
+            // Incrementar la cantidad disponible en 1
+            int cantidadDisponible = titulo.getCantidadDisponible();
+            titulo.setCantidadDisponible(cantidadDisponible + 1);
+
+            // Actualizar la disponibilidad del título
+            if (!titulo.isDisponible()) {
+                titulo.setDisponible(true); // Marcar como disponible si se estaba agotado
+            }
+
+            tituloRepositorio.save(titulo);
+
             prestamoRepositorio.delete(prestamo); // Eliminar el préstamo de la base de datos
             return "redirect:/prestamolista"; // Redirigir a la lista de préstamos actualizada
         } else {
             return "redirect:/prestamo_no_encontrado";
         }
     }
+
     @PostMapping("/renovar")
-    public String renovarPrestamo(@RequestParam String isbn,
-                                  @RequestParam String nombreUsuario,
-                                  @RequestParam String tituloNombre,
-                                  Model model) {
-        Optional<Prestamo> prestamoOptional = prestamoRepositorio.findByIsbn(isbn);
+    public String actualizarPrestamo(@RequestParam Long prestamoId, Model model) {
+        Optional<Prestamo> prestamoOptional = prestamoRepositorio.findById(prestamoId);
 
         if (prestamoOptional.isPresent()) {
             Prestamo prestamo = prestamoOptional.get();
-            Date fechaActual = new Date();
 
-            if (fechaActual.before(prestamo.getFechaDevolucion())) {
-                // Calcula la nueva fecha de devolución (por ejemplo, 15 días adicionales)
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(fechaActual);
-                calendar.add(Calendar.DAY_OF_YEAR, 15);
-                Date nuevaFechaDevolucion = calendar.getTime();
+            // Actualizar la fecha de préstamo (a la fecha actual)
+            Date nuevaFechaPrestamo = new Date();
+            prestamo.setFechaPrestamo(nuevaFechaPrestamo);
 
-                // Actualiza la fecha de devolución del préstamo
-                prestamo.setFechaDevolucion(nuevaFechaDevolucion);
+            // Calcular y actualizar la nueva fecha de devolución (por ejemplo, sumando 15 días a la fecha actual)
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(nuevaFechaPrestamo);
+            calendar.add(Calendar.DAY_OF_YEAR, 15);
+            Date nuevaFechaDevolucion = calendar.getTime();
+            prestamo.setFechaDevolucion(nuevaFechaDevolucion);
 
-                // Guarda el préstamo actualizado en el repositorio
-                prestamoRepositorio.save(prestamo);
+            // Guardar los cambios en el préstamo en la base de datos
+            prestamoRepositorio.save(prestamo);
 
-                // Añade las fechas al modelo para mostrarlas en la página de éxito
-                model.addAttribute("fechaPrestamo", fechaActual);
-                model.addAttribute("fechaDevolucion", nuevaFechaDevolucion);
+            // Agregar el préstamo actualizado al modelo si es necesario mostrarlo en la vista
+            model.addAttribute("prestamo", prestamo);
 
-                return renovacionExitosa((@ModelAttribute("fechaPrestamo") Date fechaPrestamo,
-                        @ModelAttribute("fechaDevolucion") Date fechaDevolucion,
-                        Model model); // Redirige a la página de renovación exitosa
-            } else {
-                return "tiempo_limite_excedido"; // Redirige a la página de límite de tiempo excedido
-            }
+            return renovacionExitosa(); // Página de confirmación de actualización
         } else {
-            return "prestamo_no_encontrado"; // Redirige a la página de préstamo no encontrado
+            return "redirect:/prestamo_no_encontrado";
         }
     }
-
     @GetMapping("/renovacion_exitosa")
-    public String renovacionExitosa(@ModelAttribute("fechaPrestamo") Date fechaPrestamo,
-                                    @ModelAttribute("fechaDevolucion") Date fechaDevolucion,
-                                    Model model) {
-        model.addAttribute("fechaPrestamo", fechaPrestamo);
-        model.addAttribute("fechaDevolucion", fechaDevolucion);
-        return "renovacion_exitosa"; // Nombre de la página HTML
+    public String renovacionExitosa() {
+        return "renovacion_exitosa"; // HTML con el menú de opciones
     }
+
 
 
 }
