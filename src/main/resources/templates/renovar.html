@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Préstamo</title>
+    <title>Confirmación de Prestamo</title>
     <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/addTitle-styles.css">
+    <link rel="stylesheet" th:href="@{/css/addTitle-styles.css}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 
@@ -25,14 +25,19 @@
 
 <main style="padding-top: 80px;">
     <div class="container-fluid text-center">
-        <h1>Confirmación de Préstamo</h1>
-        <p>Se ha realizado el préstamo correctamente.</p>
+        <h1>Confirmación de Renovacion</h1>
+        <p>Usuario: <span th:text="${usuario.nombre}"></span></p>
+        <p>Título: <span th:text="${titulo.nombre}"></span></p>
+        <p>Fecha de Préstamo: <span th:text="${#dates.format(fechaPrestamo, 'dd-MM-yyyy')}"></span></p>
+        <p>Fecha de Devolución: <span th:text="${#dates.format(fechaDevolucion, 'dd-MM-yyyy')}"></span></p>
 
-        <!-- Botón para regresar al índice -->
-        <a href="/Gestion_prestamos" class="btn btn-primary">Volver al Inicio</a>
+        <form action="/renovar" method="post">
+            <input type="hidden" name="nombreUsuario" th:value="${usuario.nombre}" />
+            <input type="hidden" name="tituloNombre" th:value="${titulo.nombre}" />
+            <input type="submit" value="Confirmar Reserva" />
+        </form>
     </div>
 </main>
-
 
 <footer>
     <div class="contenedor-footer">

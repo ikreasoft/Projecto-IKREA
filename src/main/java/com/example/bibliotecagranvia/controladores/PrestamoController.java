@@ -117,51 +117,6 @@ public class PrestamoController {
         }
     }
 
-    @PostMapping("/renovar")
-    public String renovarPrestamo(@RequestParam String isbn,
-                                  @RequestParam String nombreUsuario,
-                                  @RequestParam String tituloNombre,
-                                  Model model) {
-        // Encontrar el préstamo por ISBN
-        Optional<Prestamo> prestamoOptional = prestamoRepositorio.findByIsbn(isbn);
-
-        if (prestamoOptional.isPresent()) {
-            Prestamo prestamo = prestamoOptional.get();
-            Date fechaActual = new Date();
-
-            if (fechaActual.before(prestamo.getFechaDevolucion())) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(fechaActual);
-                calendar.add(Calendar.DAY_OF_YEAR, 15); // Renovar por 15 días más
-                Date nuevaFechaDevolucion = calendar.getTime();
-
-                prestamo.setFechaDevolucion(nuevaFechaDevolucion);
-                prestamoRepositorio.save(prestamo);
-
-                // Agregar fechas al modelo para mostrar en la vista de renovación exitosa
-                model.addAttribute("fechaPrestamo", fechaActual);
-                model.addAttribute("fechaDevolucion", nuevaFechaDevolucion);
-
-                // Aquí deberías retornar una vista con el resultado exitoso de la renovación
-                return "redirect:/renovacion_exitosa";
-            } else {
-                // El tiempo límite de devolución ha sido excedido
-                return "redirect:/tiempo_limite_excedido";
-            }
-        } else {
-            // No se encontró el préstamo por el ISBN proporcionado
-            return "redirect:/prestamo_no_encontrado";
-        }
-    }
-
-    @GetMapping("/renovacion_exitosa")
-    public String renovacionExitosa(@ModelAttribute("fechaPrestamo") Date fechaPrestamo,
-                                    @ModelAttribute("fechaDevolucion") Date fechaDevolucion,
-                                    Model model) {
-        model.addAttribute("fechaPrestamo", fechaPrestamo);
-        model.addAttribute("fechaDevolucion", fechaDevolucion);
-        return "renovacion_exitosa"; // Nombre de la página HTML
-    }
     @PostMapping("/devolver")
     public String devolverLibro(@RequestParam Long prestamoId) {
         Optional<Prestamo> prestamoOptional = prestamoRepositorio.findById(prestamoId);
@@ -174,5 +129,53 @@ public class PrestamoController {
             return "redirect:/prestamo_no_encontrado";
         }
     }
+    @PostMapping("/renovar")
+    public String renovarPrestamo(@RequestParam String isbn,
+                                  @RequestParam String nombreUsuario,
+                                  @RequestParam String tituloNombre,
+                                  Model model) {
+        Optional<Prestamo> prestamoOptional = prestamoRepositorio.findByIsbn(isbn);
+
+        if (prestamoOptional.isPresent()) {
+            Prestamo prestamo = prestamoOptional.get();
+            Date fechaActual = new Date();
+
+            if (fechaActual.before(prestamo.getFechaDevolucion())) {
+                // Calcula la nueva fecha de devolución (por ejemplo, 15 días adicionales)
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(fechaActual);
+                calendar.add(Calendar.DAY_OF_YEAR, 15);
+                Date nuevaFechaDevolucion = calendar.getTime();
+
+                // Actualiza la fecha de devolución del préstamo
+                prestamo.setFechaDevolucion(nuevaFechaDevolucion);
+
+                // Guarda el préstamo actualizado en el repositorio
+                prestamoRepositorio.save(prestamo);
+
+                // Añade las fechas al modelo para mostrarlas en la página de éxito
+                model.addAttribute("fechaPrestamo", fechaActual);
+                model.addAttribute("fechaDevolucion", nuevaFechaDevolucion);
+
+                return renovacionExitosa((@ModelAttribute("fechaPrestamo") Date fechaPrestamo,
+                        @ModelAttribute("fechaDevolucion") Date fechaDevolucion,
+                        Model model); // Redirige a la página de renovación exitosa
+            } else {
+                return "tiempo_limite_excedido"; // Redirige a la página de límite de tiempo excedido
+            }
+        } else {
+            return "prestamo_no_encontrado"; // Redirige a la página de préstamo no encontrado
+        }
+    }
+
+    @GetMapping("/renovacion_exitosa")
+    public String renovacionExitosa(@ModelAttribute("fechaPrestamo") Date fechaPrestamo,
+                                    @ModelAttribute("fechaDevolucion") Date fechaDevolucion,
+                                    Model model) {
+        model.addAttribute("fechaPrestamo", fechaPrestamo);
+        model.addAttribute("fechaDevolucion", fechaDevolucion);
+        return "renovacion_exitosa"; // Nombre de la página HTML
+    }
+
 
 }
