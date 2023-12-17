@@ -36,8 +36,22 @@ public class TituloController {
     }
     @PostMapping("/addTitle")
     public String addTitlePost(@ModelAttribute Titulo titulo,Model model){
-        tituloRepositorio.save(titulo);
-        return "redirect:readTitles";
+        // tituloRepositorio.save(titulo);
+        // return "title/titleSaved";
+
+        // Verificar si el título ya existe por su nombre o ISBN
+        Optional<Titulo> tituloExistentePorNombre = tituloRepositorio.findByNombre(titulo.getNombre());
+        Optional<Titulo> tituloExistentePorISBN = tituloRepositorio.findByIsbn(titulo.getIsbn());
+
+        if (tituloExistentePorNombre.isPresent() || tituloExistentePorISBN.isPresent()) {
+            // Si el título ya existe, puedes redirigir a una página de error o mostrar un mensaje
+            model.addAttribute("error", "El título ya existe en la base de datos");
+            return "title/existsTitle"; // Nombre de la vista para mostrar el mensaje de error
+        } else {
+            // Si el título no existe, guárdalo en la base de datos
+            tituloRepositorio.save(titulo);
+            return "title/titleSaved";
+        }
     }
     @GetMapping("/editTitle/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
