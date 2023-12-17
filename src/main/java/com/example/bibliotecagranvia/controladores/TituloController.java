@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.bibliotecagranvia.entidades.Titulo;
 import com.example.bibliotecagranvia.persistencia.AutorRepositorio;
 import com.example.bibliotecagranvia.persistencia.TituloRepositorio;
-
 @Controller
 public class TituloController {
    @Autowired
@@ -35,22 +33,17 @@ public class TituloController {
         return "title/addTitle";
     }
     @PostMapping("/addTitle")
-    public String addTitlePost(@ModelAttribute Titulo titulo,Model model){
-        // tituloRepositorio.save(titulo);
-        // return "title/titleSaved";
-
-        // Verificar si el título ya existe por su nombre o ISBN
-        Optional<Titulo> tituloExistentePorNombre = tituloRepositorio.findByNombre(titulo.getNombre());
-        Optional<Titulo> tituloExistentePorISBN = tituloRepositorio.findByIsbn(titulo.getIsbn());
+    public String addTitlePost(@ModelAttribute Titulo titulo, Model model){
+        java.util.Optional<Titulo> tituloExistentePorNombre = tituloRepositorio.findByNombre(titulo.getNombre());
+        java.util.Optional<Titulo> tituloExistentePorISBN = tituloRepositorio.findByIsbn(titulo.getIsbn());
 
         if (tituloExistentePorNombre.isPresent() || tituloExistentePorISBN.isPresent()) {
-            // Si el título ya existe, puedes redirigir a una página de error o mostrar un mensaje
             model.addAttribute("error", "El título ya existe en la base de datos");
-            return "title/existsTitle"; // Nombre de la vista para mostrar el mensaje de error
+            return "title/existsTitle"; // Página de error o mensaje indicando que el título ya existe
         } else {
-            // Si el título no existe, guárdalo en la base de datos
+            // El título no existe, así que se guarda en la base de datos
             tituloRepositorio.save(titulo);
-            return "title/titleSaved";
+            return "title/titleSaved"; // Página de confirmación de que el título se ha guardado
         }
     }
     @GetMapping("/editTitle/{id}")
