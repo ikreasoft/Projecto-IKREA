@@ -16,17 +16,21 @@ import jakarta.validation.Valid;
 public class AutorController {
     @Autowired
     private AutorRepositorio authorRepository;
+
+    // GET method for showing the list of authors
     @GetMapping("/authors")
     public String showHomePage(Model model){
         model.addAttribute("autores", authorRepository.findAll());
         return "author/authors";
     }
+
+    // GET & POST methods for adding a new author
     @GetMapping("/addAuthor")
     public String addAuthor(Autor autor){
         return "author/addAuthor";
     }
     @PostMapping("/addAuthor")
-    public String addAuthorPost(@Valid Autor autor, BeanPropertyBindingResult result, Model model){
+    public String addAuthor(@Valid Autor autor, BeanPropertyBindingResult result, Model model){
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
             return "author/addAuthor";
@@ -44,7 +48,7 @@ public class AutorController {
         return "author/updateAuthor";
     }
     @PostMapping("/editAuthor/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid Autor autor,
+    public String updateAuthor(@PathVariable("id") long id, @Valid Autor autor,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
@@ -56,7 +60,7 @@ public class AutorController {
     }
 
     @GetMapping("/deleteAuthor/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
+    public String deleteAupdateAuthor(@PathVariable("id") long id, Model model) {
         Autor autor = authorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
         authorRepository.delete(autor);

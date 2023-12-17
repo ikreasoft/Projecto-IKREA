@@ -3,7 +3,13 @@ package com.example.bibliotecagranvia.persistencia;
 import org.springframework.data.repository.CrudRepository;
 
 import com.example.bibliotecagranvia.entidades.Titulo;
-public interface TituloRepositorio extends CrudRepository<Titulo, Long> {
-    Titulo findByNombre(String nombe);
 
+import java.util.Optional;
+
+public interface TituloRepositorio extends CrudRepository<Titulo, Long> {
+    Optional<Titulo> findByNombre(String nombe);
+
+    Optional<Titulo> findByIsbn(String isbn);
+
+    int countByDisponible(boolean b);
 }

@@ -3,62 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Catálogo de Títulos</title>
+    <title>Usuarios Registrados</title>
     <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
     <link rel="stylesheet" href="css/addTitle-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
+
 <div class="contenedor-menu-formulario">
     <nav>
         <ul>
-            <li><a href="/">Catálogo de Títulos</a></li>
-            <li><a href="identificar" class="btn btn-primary">Realizar Préstamo</a></li>
+            <li><a href="/">Catalogo de Titulos</a></li>
+            <li><a href="addTitle">Gestionar Título</a></li>
+            <!--<li><a href="author">Gestionar Autor</a></li>-->
+            <li><a href="authors">Gestionar Autores</a></li>
+            <li><a href="users/new">Registrar Usuario</a></li>
+            <li><a href="users">Ver listado de Usuario</a></li>
         </ul>
     </nav>
 </div>
 
 <main style="padding-top: 80px;">
     <div class="container-fluid text-center">
-        <div><h2>Catálogo de Títulos</h2></div>
+        <div><h2>Prestamos</h2></div>
 
         <div th:if="${message}" class="alert alert-success text-center">
             [[${message}]]
         </div>
 
         <div>
-            <label for="busqueda">Buscar:</label>
-            <input type="text" id="busqueda" name="busqueda" placeholder="Buscar título...">
-        </div>
-
-        <div>
+            <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
             <table class="table table-bordered">
                 <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
+                    <th>Nombre de Usuario</th>
                     <th>Nombre de Título</th>
                     <th>ISBN</th>
-                    <th>Cantidad</th> <!-- Nueva columna para mostrar la cantidad -->
-                    <th>Acciones</th> <!-- Columna para botones -->
+                    <th>Fecha de Préstamo</th>
+                    <th>Fecha de Devolución</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr th:each="titulo : ${listTitles}">
-                    <td th:text="${titulo.id}"></td> <!-- Muestra el ID -->
-                    <td th:text="${titulo.nombre}"></td>
-                    <td th:text="${titulo.isbn}"></td>
-                    <td th:text="${titulo.cantidadDisponible}"></td> <!-- Muestra la cantidad -->
+                <tr th:each="prestamo : ${listaPrestamo}">
+                    <td th:text="${prestamo.usuario.nombre}"></td>
+                    <td th:text="${prestamo.titulo.nombre}"></td>
+                    <td th:text="${prestamo.titulo.isbn}"></td>
+                    <td th:text="${#dates.format(prestamo.fechaPrestamo, 'dd-MM-yyyy')}"></td>
+                    <td th:text="${#dates.format(prestamo.fechaDevolucion, 'dd-MM-yyyy')}"></td>
                     <td>
-                        <form action="/quitarTitulo" method="post">
-                            <input type="hidden" name="id" th:value="${titulo.id}" /> <!-- Envía el ID al formulario -->
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <form action="/renovar" method="post">
+                            <input type="hidden" name="prestamoId" th:value="${prestamo.id}">
+                            <input type="hidden" name="isbn" th:value="${prestamo.titulo.isbn}">
+                            <input type="hidden" name="nombreUsuario" th:value="${prestamo.usuario.nombre}">
+                            <input type="hidden" name="tituloNombre" th:value="${prestamo.titulo.nombre}">
+                            <input type="submit" value="Renovar" class="btn btn-primary">
                         </form>
-                        <form action="/modificarCantidad" method="post">
-                            <input type="hidden" name="id" th:value="${titulo.id}" /> <!-- Envía el ID al formulario -->
-                            <input type="number" name="nuevaCantidad" placeholder="Nueva cantidad" required>
-                            <button type="submit" class="btn btn-warning">Actualizar</button>
+
+                        <form action="/devolver" method="post">
+                            <input type="hidden" name="prestamoId" th:value="${prestamo.id}">
+                            <input type="submit" value="Devolver" class="btn btn-danger">
                         </form>
                     </td>
                 </tr>
@@ -92,10 +98,11 @@
         $('#busqueda').on('input', function() {
             var searchText = $(this).val().toLowerCase();
             $('tbody tr').filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1)
             });
         });
     });
 </script>
+
 </body>
 </html>

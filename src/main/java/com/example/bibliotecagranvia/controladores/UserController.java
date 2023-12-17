@@ -16,6 +16,7 @@ public class UserController {
     @Autowired
     private ServicioUsuario service;
 
+    // GET method for showing the list of users
     @GetMapping("/users")
     public String showUserList(Model model) {
         List<Usuario> listUsuario = service.listAll();
@@ -50,7 +51,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);

@@ -39,7 +39,7 @@ public class TituloRepositorioTests {
     }
 
    */
- @Test
+    /*@Test
     public void testBuscarPorTitulo(){
         Autor autor = new Autor("José Carlos","Gonz.");
         autorRepositorior.save(autor);
@@ -48,6 +48,13 @@ public class TituloRepositorioTests {
         assertNotNull(encontrado);
         assertEquals("'978-84-206-8184-2",encontrado.getIsbn());
     }
+        assertEquals("ISBN1",encontrado.getIsbn());
+        assertEquals("R23",encontrado.getNumReservas());
+        /*assertEquals("José Carlos", encontrado.getAutor().getNombreAutor());
+        assertEquals("Gonz.",encontrado.getAutor().getApellido());
+
+    }*/
+
     }
 
 

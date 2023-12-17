@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Prestamo</title>
+    <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/addTitle-styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="contenedor-menu-formulario">
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="addTitle">Gestionar Título</a></li>
+            <li><a href="authors">Gestionar Autores</a></li>
+            <li><a href="users/new">Registrar Usuario</a></li>
+            <li><a href="users">Ver listado de Usuario</a></li>
+        </ul>
+    </nav>
+</div>
+
+<main style="padding-top: 80px;">
+    <div class="container-fluid text-center">
+        <h1>Confirmación de Renovacion</h1>
+        <p>Usuario: <span th:text="${usuario.nombre}"></span></p>
+        <p>Título: <span th:text="${titulo.nombre}"></span></p>
+        <p>Fecha de Préstamo: <span th:text="${#dates.format(fechaPrestamo, 'dd-MM-yyyy')}"></span></p>
+        <p>Fecha de Devolución: <span th:text="${#dates.format(fechaDevolucion, 'dd-MM-yyyy')}"></span></p>
+
+        <form action="/renovar" method="post">
+            <input type="hidden" name="nombreUsuario" th:value="${usuario.nombre}" />
+            <input type="hidden" name="tituloNombre" th:value="${titulo.nombre}" />
+            <input type="submit" value="Confirmar Reserva" />
+        </form>
+    </div>
+</main>
+
+<footer>
+    <div class="contenedor-footer">
+        <div class="content-foo">
+            <h4>Teléfono</h4>
+            <p>976877267</p>
+        </div>
+        <div class="content-foo">
+            <h4>Email</h4>
+            <p>GVlibrary@gmail.com</p>
+        </div>
+        <div class="content-foo">
+            <h4>Ubicación</h4>
+            <p>Calle Gran Vía, 7 (Madrid)</p>
+        </div>
+    </div>
+    <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
+</footer>
+
+</body>
+</html>
