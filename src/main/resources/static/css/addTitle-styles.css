@@ -16,15 +16,15 @@ nav {
     background-color: #603813;
    }
 
-nav ul{
-    padding: 0;
+nav ul {
     margin: 0;
+    padding: 0;
 }
 
 nav ul li {
     list-style: none;
     margin-left: 15px;
-    padding: 12px 0;
+    padding: 12px 10px;
     display: inline-block;
 }
 
@@ -35,30 +35,59 @@ nav ul li a {
     font-size: 18px;
 }
 
+/* Estilos para el contenido usuarios*/
+.main-container {
+    padding-top: 180px;
+}
+
+.container-fluid.text-center h2 {
+    margin-top: 20px;
+}
+
+.m-2 {
+    margin: 20px 0;
+}
+
+/* Estilos para el contenido autores */
+div[th\:switch] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 180px;
+}
+/* Establece un ancho máximo para el contenedor de autores */
+div[th\:case="*"] {
+    max-width: 600px; /* Ajusta el ancho según sea necesario */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+
+
 /* Estilos para el formulario */
 form {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 500px;
+    margin: 180px auto 0;
     padding: 40px;
     background-color: #fff; /* Cambia el color de fondo según tu preferencia */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 2cm;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); 
+    
 }
 
 form label {
-    max-width: 600px;
+    max-width: 600px; 
     margin: 10px ; /* Ajusta el margen para separar del contenido superior */
-    padding: 20px;
-    background-color: rgb(82, 71, 71) 141;
+    padding: 10px;
+    background-color: rgb(82, 71, 71)141;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 form input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 13px;
+    margin-bottom: 20px; /*Ajusta el margen para separar del contenido inferior*/
     box-sizing: border-box;
     border: 1px solid #603813;
     border-radius: 4px;
@@ -109,3 +138,5 @@ footer{
     margin: 20px 0 0 0;
     color: rgb(101, 100, 103)
 }
+
+

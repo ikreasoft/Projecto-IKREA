@@ -3,9 +3,9 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates 
 
-version: 2
-updates:
+version: 2 # This is the version number of the file format. This is required.
+updates: # This section lists all the updates that Dependabot will attempt to create
   - package-ecosystem: "maven" # See documentation for possible values
     directory: "/" # Location of package manifests
-    schedule:
-      interval: "weekly"
+    schedule: # Set update schedule for Maven dependencies
+      interval: "weekly" # Check for updates weekly
