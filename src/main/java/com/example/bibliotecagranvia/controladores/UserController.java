@@ -26,18 +26,17 @@ public class UserController {
     }
 
     // GET & POST methods for adding a new user
-    @GetMapping("/users/new")
+    @GetMapping("/users/newUser")
     public String showNewForm(Model model) {
         model.addAttribute("usuario", new Usuario());  // Cambiado "Usuario" a "usuario"
         model.addAttribute("pageTitle", "Añadir nuevo usuario");
         return "user/addUser";
     }
-
     @PostMapping("/users/save")
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
-        return "user/users";
+        return "redirect:users";
     }
 
     // GET & POST methods for updating a user
@@ -50,7 +49,7 @@ public class UserController {
             return "user/addUser";
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
-            return "user/users";
+            return "redirect:users";
         }
     }
 
@@ -63,6 +62,6 @@ public class UserController {
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "user/users";
+        return "redirect:users";
     }
 }
