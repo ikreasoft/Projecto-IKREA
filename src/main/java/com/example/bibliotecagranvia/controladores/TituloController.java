@@ -57,7 +57,7 @@ public class TituloController {
             return "updateTitle";
         }*/
         tituloRepositorio.save(titulo);
-        return "redirect:readTitles";
+        return "redirect:/updateTitle";
     }
      @GetMapping("/deleteTitle/{id}")
     public String deleteUser(@PathVariable("id") long id, Model model) {
