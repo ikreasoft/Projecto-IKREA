@@ -21,37 +21,41 @@ public class UserController {
     public String showUserList(Model model) {
         List<Usuario> listUsuario = service.listAll();
         model.addAttribute("listUsers", listUsuario);
+
         return "user/users";
     }
 
-    @GetMapping("/addUser")
+    // GET & POST methods for adding a new user
+    @GetMapping("/users/new")
     public String showNewForm(Model model) {
-        model.addAttribute("usuario", new Usuario()); 
+        model.addAttribute("usuario", new Usuario());  // Cambiado "Usuario" a "usuario"
         model.addAttribute("pageTitle", "Añadir nuevo usuario");
         return "user/addUser";
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/users/save")
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
         return "user/users";
     }
 
-    @GetMapping("/updateUser/{id}")
+    // GET & POST methods for updating a user
+    @GetMapping("/users/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Usuario usuario = service.get(id);
             model.addAttribute("usuario", usuario);  // Cambiado "user" a "usuario"
             model.addAttribute("pageTitle", "Editar Usuario (ID: " + id + ")");
-            return "addUser";
+            return "user/addUser";
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
-            return "redirect:/user/users";
+            return "user/users";
         }
     }
 
-    @GetMapping("/deleteUser/{id}")
+    // GET & POST methods for deleting a user
+    @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);
@@ -59,7 +63,6 @@ public class UserController {
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:/user/users";
+        return "user/users";
     }
 }
-
