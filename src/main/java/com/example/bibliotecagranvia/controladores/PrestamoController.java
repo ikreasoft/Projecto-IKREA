@@ -47,9 +47,9 @@ public class PrestamoController {
         return "lend/indexLend"; // HTML con el menú de opciones
     }
 
-    @GetMapping("/confirmacion_prestamos")
+    @GetMapping("/confirmacion_prestamo")
     public String confirmacionPrestamo() {
-        return "lend/confirmLend"; // HTML con el menú de opciones
+        return "lend/confirmationLend"; // HTML con el menú de opciones
     }
     @GetMapping("/titulo_ya_prestado")
     public String titulo_ya_prestado() {
