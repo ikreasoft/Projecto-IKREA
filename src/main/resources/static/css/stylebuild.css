@@ -1,22 +1,22 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;
 }
 .card {
     width: 100%;
     height: 100vh;
-    background: rgb(16, 16, 31);
-    background: linear-gradient(-150deg, rgba(116, 209, 195, 0.849)#7a93d1);
+    background: rgba(168, 141, 85, 0.336);
     display: flex;
     justify-content: center;
     align-items:center;
     background-image: url("../images/building/ilustracion-concepto-escritura-creativa/idea.jpg");
-    background-repeat:no-repeat;    
-    background-size:contain;
+    zoom: 1;
+    background-repeat:repeat;
+    background-size:cover;
     background-position:center;
     backdrop-filter:initial;
-    opacity: 98%;
+    box-shadow: #0e0000;
     border-radius: 10px;
 }
 .text {
@@ -26,6 +26,8 @@
     width: 410px;
     font-size: 2vmin;
     position: relative;
+    box-decoration-break: slice;
+
 }
 h1 {
     color: beige;
@@ -46,7 +48,7 @@ span {
 }
 .left {
     bottom: -140px;
-    left: 15px;    
+    left: 15px;
 }
 /* Centering an absolute position element */
 .center {
@@ -60,17 +62,17 @@ span {
     top: -150px;
     right: 16px;
 }
-  
+
 @media only screen and (max-width:900px) {
     .text {
-      width: 350px;
+        width: 350px;
     }
     h1 {
-      font-size: 100px;
-      margin: 90%;
+        font-size: 100px;
+        margin: 90%;
     }
     span {
-      font-size: 17px;
-      border-radius: 2em;
+        font-size: 17px;
+        border-radius: 2em;
     }
 }
