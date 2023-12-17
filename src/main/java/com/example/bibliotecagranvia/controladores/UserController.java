@@ -35,7 +35,7 @@ public class UserController {
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
-        return "redirect:/user/users";
+        return "user/users";
     }
 
     @GetMapping("/updateUser/{id}")
