@@ -33,11 +33,11 @@ public class AutorController {
     public String addAuthor(@Valid Autor autor, BeanPropertyBindingResult result, Model model){
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
-            return "author/addAuthor";
+            return "addAuthor";
         }
 
         authorRepository.save(autor);
-        return "redirect:author/authors";
+        return "redirect:authors";
     }
     @GetMapping("/editAuthor/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
@@ -64,7 +64,7 @@ public class AutorController {
         Autor autor = authorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
         authorRepository.delete(autor);
-        return "redirect:author/authors";
+        return "redirect:authors";
     }
 
 }
