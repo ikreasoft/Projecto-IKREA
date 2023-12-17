@@ -28,7 +28,7 @@
 <div class="container-fluid">
   <div class="text-center"><h2 th:text="${pageTitle}">Título del Formulario</h2></div>
 
-  <form th:action="@{/users/save}" method="post" th:object="${usuario}" style="max-width: 500px; margin: 0 auto;">
+  <form th:action="@{/users/addUser}" method="post" th:object="${usuario}" style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{id}">
     <div class="border border-secondary rounded p-3">
       <div class="form-group row">
