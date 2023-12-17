@@ -11,5 +11,4 @@ public interface TituloRepositorio extends CrudRepository<Titulo, Long> {
 
     Optional<Titulo> findByIsbn(String isbn);
 
-    int countByDisponible(boolean b);
 }

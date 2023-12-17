@@ -40,24 +40,6 @@ public class Titulo {
         this.autores = autor;
 
     }
-    private boolean disponible;
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
-    private int cantidadDisponible;
-
-    public int getCantidadDisponible() {
-        return cantidadDisponible;
-    }
-
-    public void setCantidadDisponible(int cantidadDisponible) {
-        this.cantidadDisponible = cantidadDisponible;
-    }
     public Long getId() {
         return id;
     }

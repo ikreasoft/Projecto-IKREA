@@ -97,12 +97,12 @@ public class PrestamoController {
             Titulo titulo = tituloOptional.get();
 
             // Verificar si el título está disponible
-            if (titulo.getCantidadDisponible() > 0) {
+            if (titulo.getNumReservas() > 0) {
                 Usuario usuario = usuarioOptional.get();
 
                 // Reducir la cantidad disponible en 1
-                int cantidadDisponible = titulo.getCantidadDisponible();
-                titulo.setCantidadDisponible(cantidadDisponible - 1);
+                int cantidadDisponible = titulo.getNumReservas();
+                titulo.setNumReservas(cantidadDisponible - 1);
                 // Crear un nuevo préstamo
 
                 Prestamo prestamo = new Prestamo();
@@ -122,11 +122,6 @@ public class PrestamoController {
                 calendar.add(Calendar.DAY_OF_YEAR, 15);
                 Date fechaDevolucion = calendar.getTime();
                 prestamo.setFechaDevolucion(fechaDevolucion); // Establecer la fecha de devolución
-
-                // Actualizar la disponibilidad del título
-                if (cantidadDisponible == 1) {
-                    titulo.setDisponible(false); // Marcar como no disponible si era el último ejemplar
-                }
 
                 tituloRepositorio.save(titulo);
                 prestamoRepositorio.save(prestamo);
@@ -150,13 +145,8 @@ public class PrestamoController {
             Titulo titulo = prestamo.getTitulo();
 
             // Incrementar la cantidad disponible en 1
-            int cantidadDisponible = titulo.getCantidadDisponible();
-            titulo.setCantidadDisponible(cantidadDisponible + 1);
-
-            // Actualizar la disponibilidad del título
-            if (!titulo.isDisponible()) {
-                titulo.setDisponible(true); // Marcar como disponible si se estaba agotado
-            }
+            int cantidadDisponible = titulo.getNumReservas();
+            titulo.setNumReservas(cantidadDisponible + 1);
 
             tituloRepositorio.save(titulo);
 
