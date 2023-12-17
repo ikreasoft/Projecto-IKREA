@@ -36,7 +36,7 @@ public class UserController {
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
-        return "redirect:users";
+        return "redirect:/users";
     }
 
     // GET & POST methods for updating a user
@@ -49,7 +49,7 @@ public class UserController {
             return "user/addUser";
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
-            return "redirect:users";
+            return "redirect:/users";
         }
     }
 
@@ -62,6 +62,6 @@ public class UserController {
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:users";
+        return "redirect:/users";
     }
 }
