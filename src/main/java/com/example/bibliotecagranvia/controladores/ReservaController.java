@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Controlador para la gestión de reservas
+ */
 
 @Controller
 public class ReservaController {

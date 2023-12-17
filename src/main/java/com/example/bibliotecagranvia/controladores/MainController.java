@@ -22,6 +22,7 @@ import java.util.Map;
 public class MainController {
     private TituloRepositorio repo;
 
+    // Constructor para inyectar el repositorio en el controlador
     public List<Titulo> listAll() {
         return (List<Titulo>) repo.findAll();
     }
@@ -29,12 +30,14 @@ public class MainController {
     @Autowired
     TituloRepositorio tituloRepositorio;
 
+    // GET method for showing the list of authors
     @GetMapping("/")
     public String showHomePage(Model model) {
         model.addAttribute("laberinto", "/img/labirinto1.jpg");
         return "index";
     }
 
+    // GET method for showing new dates for renew a book enabled by the librarian
     @PostMapping("/actualizarDisponibilidad")
     public String actualizarDisponibilidad(@RequestParam Long id, @RequestParam int nuevaCantidad) {
         Optional<Titulo> tituloOptional = tituloRepositorio.findById(id);
@@ -48,7 +51,9 @@ public class MainController {
             return "redirect:/"; // Manejo de error si no se encuentra el título
         }
     }
-    @GetMapping("/Catalog")
+
+    // GET method for showing the catalog of books and magazines/jorunals
+    @GetMapping("/catalog")
     public String showTitleList(Model model) {
         List<Titulo> listTitle = (List<Titulo>) tituloRepositorio.findAll();
         model.addAttribute("listTitles", listTitle);
@@ -62,6 +67,8 @@ public class MainController {
 
         return "catalogo"; // Retornar el nombre de la vista a mostrar
     }
+
+    // GET and POST methods for adding a new title
     @GetMapping("/addTitle")
     public String addTitle(Model model){
         model.addAttribute("titulo", new Titulo());
@@ -88,6 +95,7 @@ public class MainController {
         }
     }
 
+    // GET method for updating a title (exists and new)
     @GetMapping("/titulo_ya_existe")
     public String titulo_ya_existe() {
         return "titulo_ya_existe"; // HTML con el menú de opciones
@@ -97,22 +105,20 @@ public class MainController {
         return "titulo_guardado_exito"; // HTML con el menú de opciones
     }
 
-
-
-
+    // POST method for delete a title
     @PostMapping("/quitarTitulo")
     public String quitarTitulo(@RequestParam Long id) {
         Optional<Titulo> tituloOptional = tituloRepositorio.findById(id);
-
         if (tituloOptional.isPresent()) {
             Titulo titulo = tituloOptional.get();
             tituloRepositorio.delete(titulo);
-            return "redirect:/Catalog"; // Redirige a la lista de títulos después de eliminar uno
+            return "redirect:/catalog"; // Redirige a la lista de títulos después de eliminar uno
         } else {
             return "redirect:/"; // Manejo de error si no se encuentra el título
         }
     }
 
+    // POST method for modify the quantity of a title
     @PostMapping("/modificarCantidad")
     public String modificarCantidad(@RequestParam Long id, @RequestParam int nuevaCantidad) {
         Optional<Titulo> tituloOptional = tituloRepositorio.findById(id);
@@ -121,7 +127,7 @@ public class MainController {
             Titulo titulo = tituloOptional.get();
             titulo.setCantidadDisponible(nuevaCantidad);
             tituloRepositorio.save(titulo);
-            return "redirect:/Catalog"; // Redirige a la lista de títulos después de modificar la cantidad
+            return "redirect:/catalog"; // Redirige a la lista de títulos después de modificar la cantidad
         } else {
             return "redirect:/"; // Manejo de error si no se encuentra el título
         }

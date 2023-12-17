@@ -16,6 +16,7 @@ public class ControladorUsuario {
     @Autowired
     private ServicioUsuario service;
 
+    // GET method for showing the list of users
     @GetMapping("/users")
     public String showUserList(Model model) {
         List<Usuario> listUsuario = service.listAll();
@@ -24,6 +25,7 @@ public class ControladorUsuario {
         return "Usuarios";
     }
 
+    // GET & POST methods for adding a new user
     @GetMapping("/users/new")
     public String showNewForm(Model model) {
         model.addAttribute("usuario", new Usuario());  // Cambiado "Usuario" a "usuario"
@@ -38,6 +40,7 @@ public class ControladorUsuario {
         return "redirect:/users";
     }
 
+    // GET & POST methods for updating a user
     @GetMapping("/users/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
@@ -51,6 +54,7 @@ public class ControladorUsuario {
         }
     }
 
+    // GET & POST methods for deleting a user
     @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {

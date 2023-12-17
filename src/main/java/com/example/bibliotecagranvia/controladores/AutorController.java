@@ -16,11 +16,15 @@ import jakarta.validation.Valid;
 public class AutorController {
     @Autowired
     private AutorRepositorio authorRepository;
+
+    // GET method for showing the list of authors
     @GetMapping("/authors")
     public String showHomePage(Model model){
         model.addAttribute("autores", authorRepository.findAll());
         return "authors";
     }
+
+    // GET & POST methods for adding a new author
     @GetMapping("/addAuthor")
     public String addAuthor(Autor autor){
         return "addAuthor";
@@ -30,36 +34,37 @@ public class AutorController {
         if (result.hasErrors()) {
             return "addAuthor";
         }
-        
         authorRepository.save(autor);
         return "redirect:/authors";
     }
+
+    // GET & POST methods for updating an author
     @GetMapping("/edit/{id}")
-public String showUpdateForm(@PathVariable("id") long id, Model model) {
-    Autor autor = authorRepository.findById(id)
-      .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
-    
-    model.addAttribute("autor", autor);
-    return "updateAuthor";
-}
-@PostMapping("/update/{id}")
-public String updateUser(@PathVariable("id") long id, @Valid Autor autor, 
-  BindingResult result, Model model) {
-    if (result.hasErrors()) {
-        autor.setId(id);
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        Autor autor = authorRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
+
+        model.addAttribute("autor", autor);
         return "updateAuthor";
     }
-        
-    authorRepository.save(autor);
-    return "redirect:/authors";
-}
-    
-@GetMapping("/delete/{id}")
-public String deleteUser(@PathVariable("id") long id, Model model) {
-    Autor autor = authorRepository.findById(id)
-      .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
-    authorRepository.delete(autor);
-    return "redirect:/authors";
-}
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") long id, @Valid Autor autor,
+      BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            autor.setId(id);
+            return "updateAuthor";
+        }
+        authorRepository.save(autor);
+        return "redirect:/authors";
+    }
+
+    // GET & POST methods for deleting an author
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        Autor autor = authorRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Id de autor no valido:" + id));
+        authorRepository.delete(autor);
+        return "redirect:/authors";
+    }
 
 }

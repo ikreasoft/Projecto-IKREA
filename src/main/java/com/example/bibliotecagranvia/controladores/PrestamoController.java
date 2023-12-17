@@ -27,20 +27,22 @@ public class PrestamoController {
     @Autowired
     private TituloRepositorio tituloRepositorio;
 
+    // Constructor para inyectar el repositorio en el controlador (para obtener todos los préstamos)
     @GetMapping("identificar")
-
     public String mostrarFormularioPrestamo() {
         return "identificar";
     }
 
-    @GetMapping("prestamolista")
+    // GET method for showing the list of loans enabled by the librarian
+    @GetMapping("prestamoLista")
     public String mostrarPrestamos(Model model) {
         List<Prestamo> listaPrestamo = (List<Prestamo>) prestamoRepositorio.findAll(); // Obtener todas los prestamos
         model.addAttribute("listaPrestamo", listaPrestamo);
         return "ver_prestamos";
     }
 
-    @GetMapping("/Gestion_prestamos")
+    // GET method for showing the list of loans enabled by the librarian
+    @GetMapping("/gestion_prestamos")
     public String gestion_prestamos() {
         return "gestion_prestamo"; // HTML con el menú de opciones
     }
@@ -54,6 +56,7 @@ public class PrestamoController {
         return "titulo_ya_prestado"; // HTML con el menú de opciones
     }
 
+    // GET method for manage 'prestamo' option
     @PostMapping("/prestamo")
     public String confirmarPrestamo(@RequestParam String nombreUsuario, @RequestParam String tituloNombre, Model model) {
         Optional<Usuario> usuarioOptional = repositorioUsuario.findByNombre(nombreUsuario);
@@ -84,6 +87,7 @@ public class PrestamoController {
         }
     }
 
+    // POST method for manage 'prestamo' option
     @PostMapping("/prestar")
     public String prestarLibro(@RequestParam String nombreUsuario, @RequestParam String tituloNombre, Model model) {
         Optional<Usuario> usuarioOptional = repositorioUsuario.findByNombre(nombreUsuario);
@@ -136,6 +140,7 @@ public class PrestamoController {
         }
     }
 
+    // POST method for showing the list of loans enabled by the librarian and the user can return it
     @PostMapping("/devolver")
     public String devolverLibro(@RequestParam Long prestamoId) {
         Optional<Prestamo> prestamoOptional = prestamoRepositorio.findById(prestamoId);
@@ -156,12 +161,13 @@ public class PrestamoController {
             tituloRepositorio.save(titulo);
 
             prestamoRepositorio.delete(prestamo); // Eliminar el préstamo de la base de datos
-            return "redirect:/prestamolista"; // Redirigir a la lista de préstamos actualizada
+            return "redirect:/prestamoLista"; // Redirigir a la lista de préstamos actualizada
         } else {
             return "redirect:/prestamo_no_encontrado";
         }
     }
 
+    // POST method for user can renew a loan
     @PostMapping("/renovar")
     public String actualizarPrestamo(@RequestParam Long prestamoId, Model model) {
         Optional<Prestamo> prestamoOptional = prestamoRepositorio.findById(prestamoId);
@@ -191,11 +197,11 @@ public class PrestamoController {
             return "redirect:/prestamo_no_encontrado";
         }
     }
+
+    // GET method for renew a loan successfully
     @GetMapping("/renovacion_exitosa")
     public String renovacionExitosa() {
         return "renovacion_exitosa"; // HTML con el menú de opciones
     }
-
-
 
 }
