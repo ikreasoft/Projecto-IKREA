@@ -28,9 +28,9 @@ public class PrestamoController {
     private TituloRepositorio tituloRepositorio;
 
     // Constructor para inyectar el repositorio en el controlador (para obtener todos los préstamos)
-    @GetMapping("identificar")
+    @GetMapping("checkLend")
     public String mostrarFormularioPrestamo() {
-        return "identificar";
+        return "lend/checkLend";
     }
 
     // GET method for showing the list of loans enabled by the librarian
@@ -38,22 +38,22 @@ public class PrestamoController {
     public String mostrarPrestamos(Model model) {
         List<Prestamo> listaPrestamo = (List<Prestamo>) prestamoRepositorio.findAll(); // Obtener todas los prestamos
         model.addAttribute("listaPrestamo", listaPrestamo);
-        return "ver_prestamos";
+        return "lend/lends";
     }
 
     // GET method for showing the list of loans enabled by the librarian
-    @GetMapping("/gestion_prestamos")
+    @GetMapping("/indexLend")
     public String gestion_prestamos() {
-        return "gestion_prestamo"; // HTML con el menú de opciones
+        return "lend/indexLend"; // HTML con el menú de opciones
     }
 
     @GetMapping("/confirmacion_prestamos")
     public String confirmacionPrestamo() {
-        return "confirmacion_prestamo"; // HTML con el menú de opciones
+        return "lend/confirmLend"; // HTML con el menú de opciones
     }
     @GetMapping("/titulo_ya_prestado")
     public String titulo_ya_prestado() {
-        return "titulo_ya_prestado"; // HTML con el menú de opciones
+        return "lend/lendedTitle"; // HTML con el menú de opciones
     }
 
     // GET method for manage 'prestamo' option
@@ -81,9 +81,9 @@ public class PrestamoController {
             model.addAttribute("fechaPrestamo", fechaPrestamo);
             model.addAttribute("fechaDevolucion", fechaDevolucion);
 
-            return "confirmar_prestamo"; // Redirigir a la página de confirmación
+            return "lend/confirmLend"; // Redirigir a la página de confirmación
         } else {
-            return "usuario_o_titulo_no_encontrado"; // Página de error si no se encuentran usuario o título
+            return "miscelaneous/userTitleNotFound"; // Página de error si no se encuentran usuario o título
         }
     }
 
@@ -131,7 +131,7 @@ public class PrestamoController {
                 return titulo_ya_prestado();
             }
         } else {
-            return "redirect:/usuario_o_titulo_no_encontrado";
+            return "redirect:/miscelaneous/userTitleNotFound";
         }
     }
 
@@ -151,9 +151,9 @@ public class PrestamoController {
             tituloRepositorio.save(titulo);
 
             prestamoRepositorio.delete(prestamo); // Eliminar el préstamo de la base de datos
-            return "redirect:/prestamoLista"; // Redirigir a la lista de préstamos actualizada
+            return "redirect:/lend/prestamoLista"; // Redirigir a la lista de préstamos actualizada
         } else {
-            return "redirect:/prestamo_no_encontrado";
+            return "redirect:/lend/lendNotFound";
         }
     }
 
@@ -184,14 +184,14 @@ public class PrestamoController {
 
             return renovacionExitosa(); // Página de confirmación de actualización
         } else {
-            return "redirect:/prestamo_no_encontrado";
+            return "redirect:/lendNotFound";
         }
     }
 
     // GET method for renew a loan successfully
     @GetMapping("/renovacion_exitosa")
     public String renovacionExitosa() {
-        return "renovacion_exitosa"; // HTML con el menú de opciones
+        return "lend/renovationSuccesful"; // HTML con el menú de opciones
     }
 
 }
