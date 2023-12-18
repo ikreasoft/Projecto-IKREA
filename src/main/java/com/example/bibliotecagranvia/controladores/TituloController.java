@@ -66,12 +66,12 @@ public class TituloController {
         tituloRepositorio.save(titulo);
         return "title/titleSaved";
     }
-     @GetMapping("/deleteTitle/{id}")
+    @GetMapping("/deleteTitle/{id}")
     public String deleteUser(@PathVariable("id") long id, Model model) {
         Titulo titulo = tituloRepositorio.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id de titulo no valido:" + id));
         tituloRepositorio.delete(titulo);
-        return "title/titles";
+        return "title/titleDeleted";
     }
 
 }
