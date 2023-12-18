@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Manage Authors</title>
-    <link rel="stylesheet" type="text/css" href="/css/addTitle-styles.css">
+    <link rel="stylesheet" href="css/addTitle-styles.css">
 </head>
 <body>
     <div class="contenedor-menu-formulario">
         <nav>  
             <ul>
                 <ul>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="addTitle">Añadir Título</a></li>
-                    <li><a href="addAuthor">Añadir Autor</a></li>
-                    <li><a href="authors">Autores</a></li>
-                    <li><a href="updateAuthor">Modificar Autor</a></li>
-                    <li><a href="users/new">Registrar Usuario</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="addTitle.html">Añadir Título</a></li>
+                    <li><a href="addAuthor.html">Añadir Autor</a></li>
+                    <li><a href="authors.html">Autores</a></li>
+                    <li><a href="updateAuthor.html">Modificar Autor</a></li>
+                    <li><a href="Formulario_usuario.html">Registrar Usuario</a></li>
                    </ul>
             </ul>
         </nav>  
     </div>
 
-    <button onclick="location.href='/addAuthor'" style="margin-top: 50px;">Crea un autor</button>
+    <button onclick="location.href='/addAuthor';" style="margin-top: 50px;">Crea un autor</button>
 
     <div th:switch="${autores}">
         <h2 th:case="null">No hay autores aún!</h2>
@@ -59,7 +59,7 @@
             </div>
             <div class="content-foo">
                 <h4>Email</h4>
-                <p>GV-library@gmail.com</p>
+                <p>ikreagroupe@gmail.com</p>
             </div>
             <div class="content-foo">
                 <h4>Ubicación</h4>

@@ -25,30 +25,24 @@
         </div>
         
      <main> 
-<form th:action="@{/addTitle}" th:object="${titulo}" method="post">
-    <!--<label for="autor">Autor:</label>
-    <select name="autor" th:field="*{autor}">
-         <option value="">Select an author</option>
-         <th:block th:each="author : ${autores}">
-             <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" th:selected="${author.id== titulo.autor.id}"></option>
-         </th:block>
-     </select>
-     <br><br>-->
-    <label for="titulo">Titulo:</label>
-    
-    <input type="text" th:field="${titulo.nombre}"/>
-    <br><br>
-    
- 
-    
-    <label for="isbn">Isbn:</label>
-    <input type="text" th:field="*{isbn}"><br/><br/>
-    
-    <label for="numReserva">Número reserva:</label>
-    <input type="text" th:field="*{numReservas}"/><br/><br/>
-    
-    <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/index.html'"/>
-</form>
+        <form th:action="@{/addTitle}" th:object="${titulo}" method="post">
+            <label for="titulo">Titulo:</label>
+            <input type="text" th:field="${titulo.nombre}"/>
+            <br><br>
+            <label for="isbn">ISBN:</label>
+            <input type="text" th:field="*{isbn}"><br/><br/>
+            <label for="numReserva">Número de reserva:</label>
+            <input type="number" th:field="*{numReservas}"/><br/><br/>
+            <label for="autor">Autor:</label>
+            <select name="autor" th:field="*{autor}" multiple="multiple">
+                 <option value="">Select an author</option>
+                 <th:block th:each="author : ${autoresTodos}">
+                     <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" ></option>
+                 </th:block>
+             </select>
+             <br><br>
+            <input type="submit" value="Crear Titulo" onclick="location.href='redirect:/index.html'"/>
+        </form>
 </main>
 
 <footer>
@@ -59,7 +53,7 @@
         </div>
         <div class="content-foo">
             <h4>Email</h4>
-            <p>ikreagroupe@gmail.com</p>
+            <p>GV-library@gmail.com/p>
         </div>
         <div class="content-foo">
             <h4>Ubicación</h4>
