@@ -1,56 +1,85 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="wide wow-animation" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Renovacion</title>
-    <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/addTitle-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <title>GRAN VÍA - Titulo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--  Logo favicon -->
+    <link rel="icon" href="images/favicongranvia.ico" type="image/x-icon">
+    <!--  Estilos de letra -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--  Estilos locales personalizados -->
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>.ie-panel{display: none;background: rgba(33, 33, 33, 0.356);padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
 </head>
 <body>
-
-<div class="contenedor-menu-formulario">
-    <nav>
-        <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="addTitle">Gestionar Título</a></li>
-            <li><a href="authors">Gestionar Autores</a></li>
-            <li><a href="users/new">Registrar Usuario</a></li>
-            <li><a href="users">Ver listado de Usuario</a></li>
-        </ul>
-    </nav>
+<div class="preloader">
+    <div class="preloader-body">
+        <div class="cssload-container">
+            <div class="cssload-speeding-wheel"></div>
+        </div>
+        <p>Generando historias...</p>
+    </div>
 </div>
-
-<main style="padding-top: 80px;">
-    <div class="container-fluid text-center">
-        <h1>Confirmación de Renovacion</h1>
-        <p>Se ha realizado la renovacion del préstamo correctamente.</p>
-
-        <!-- Botón para regresar al índice -->
-        <a href="/Gestion_prestamos" class="btn btn-primary">Volver</a>
-    </div>
-</main>
-
-
-<footer>
-    <div class="contenedor-footer">
-        <div class="content-foo">
-            <h4>Teléfono</h4>
-            <p>976877267</p>
+<div class="page">
+    <!-- Page Header-->
+    <header class="section page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+            <nav class="rd-navbar rd-navbar-wide" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+                <div class="rd-navbar-main-outer">
+                    <div class="rd-navbar-main">
+                        <!-- RD Navbar Panel-->
+                        <div class="rd-navbar-panel">
+                            <!-- RD Navbar Toggle-->
+                            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                            <!-- RD Navbar Brand--
+                            <div class="rd-navbar-brand"><a class="brand" href="/"><img class="brand-logo-dark" src="images/logogranvia.png" alt="" width="261" height="72" srcset="images/logogranvia_300x300.png"/><img class="brand-logo-light" src="images/logogranvia_250.png" alt="" width="133" height="45" srcset="images/logogranvia_small_125.png"/></a>
+                            </div>
+                        </div>
+                        <div class="rd-navbar-nav-wrap">
+                            <!-- RD Navbar Nav--
+                            <ul class="rd-navbar-nav">
+                                <li><a href="/">Inicio</a></li>
+                                <li><a href="addTitle">Títulos</a></li>
+                                <li><a href="authors">Autores</a></li>
+                                <li><a href="users/new">Usuario</a></li>
+                                <li><a href="users">Ver listado de Usuario</a></li>
+                            </ul>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <div class="content-foo">
-            <h4>Email</h4>
-            <p>GVlibrary@gmail.com</p>
+    </header>
+    <section class="section context-dark bg-image bg-mask bg-mask-2 section-fullheight section-70vh" style="background-image: url(images/addedObject.png)" >
+        <div class="section-fullheight-inner section-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-xl-6 text-center text-md-center">
+                        <div class="jumbotron-custom wow fadeInRight">
+                            <div class="container-fluid text-center">
+                                <h1>El titulo ya ha sido prestado</h1>
+                                <!-- Botón para regresar al índice -->
+                                <a href="/indexLend" class="btn btn-primary">volver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="content-foo">
-            <h4>Ubicación</h4>
-            <p>Calle Gran Vía, 7 (Madrid)</p>
-        </div>
-    </div>
-    <h2 class="titulo-final">&copy; IKREA | BIBLIOTECA GRAN VÍA </h2>
-</footer>
-
+    </section>
+</div>
+<div class="snackbars" id="form-output-global"></div>
+<script type="text/javascript" src="../../js/core.min.js"></script>
+<script type="text/javascript" src="../../js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../js/loading-bar.js"></script>
 </body>
 </html>
