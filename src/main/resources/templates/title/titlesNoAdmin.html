@@ -1,26 +1,25 @@
-
-<!-- Price box minimal--><!DOCTYPE html>
+<!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
-  <head>
-    <title>GRAN VÍA - Usuarios</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="images/favicongranvia.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css">
-    <style>.ie-panel{display: none;background: rgba(33, 33, 33, 0.356);padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
-  </head>
+<head>
+  <title>GRAN VÍA - Titulo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="images/favicongranvia.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>.ie-panel{display: none;background: rgba(33, 33, 33, 0.356);padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+</head>
   <body>
     <div class="preloader">
       <div class="preloader-body">
         <div class="cssload-container">
           <div class="cssload-speeding-wheel"></div>          
         </div>        
-        <p>Buscando a nuestros usuarios...</p>
+        <p>Generando titulos...</p>
       </div>
     </div>
     <div class="page">
@@ -42,13 +41,9 @@
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
-                    <!-- <li class="rd-nav-item active"><a class="rd-nav-link" href="/">Inicio</a>
-                    </li>                     -->
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="titles">Títulos</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="titlesNoAdmin">Títulos</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="authors">Autores</a>
-                    </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="users">Usuarios</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="authorsNoAdmin">Autores</a>
                     </li>
                   </ul>                  
                 </div>
@@ -57,63 +52,54 @@
           </nav>
         </div>
       </header>
-      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/usuarios-header.jpg);">
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/titles-header.jpeg);">
         <div class="container">
-          <h2 class="breadcrumbs-custom-title">Usuarios</h2>
-          <div class="breadcrumbs-custom-subtitle">Forjando Juntos el Camino del Éxito: Donde Cada Empleado Cuenta.</div>
+          <h2 class="breadcrumbs-custom-title">Títulos</h2>
+          <div class="breadcrumbs-custom-subtitle">Titulares que impactan, historias que resplandecen: Encuentra el título perfecto para tu mundo.</div>
         </div>
       </section>
       <!-- Base seccion: titulos -->
       <section class="section section-lg bg-default">
         <div class="container">
-          <!-- Ventana flotante para el registro de nuevos autores. -->
-          <div class="ventana_flotante">
-            <button class="ventana_flotante" type="button" onclick="location.href='/addUser'">Crear nuevo usuario</button>
-          </div>          
+          <div>
+            <label for="busqueda">Buscar:</label>
+            <input type="text" id="busqueda" name="busqueda" placeholder="Buscar título...">
+        </div>         
             <div class="row">
               <div class="col-xl-8">              
-                <!-- Tabla de usuarios -->
+                <!-- Tabla de autores -->
                 <table class="table">
                   <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">Email</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellidos</th>
-                      <th scope="col">Dirección</th>
-                      <th scope="col">Telefono</th>
-                      <th scope="col">Enabled</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
+                    <tr>                    
+                      <!--<th scope="col">#</th>-->
+                      <th scope="col">Titulo</th>
+                      <th scope="col">ISBN</th>
+                      <th scope="col">Ejemplares</th>
                     </tr>
-                  </thead>                  
+                  </thead>
                   <tbody>
-                    <tr th:each="usuario : ${listUsers}">
-                      <td th:text="${usuario.email}"></td>
-                      <td th:text="${usuario.nombre}"></td>
-                      <td th:text="${usuario.apellidos}"></td>
-                      <td th:text="${usuario.direccion}"></td>
-                      <td th:text="${usuario.telefono}"></td>
-                      <td th:text="${usuario.enabled}"></td>
-                      <td><a th:href="@{'/editUser/' + ${usuario.id}}">Edit</a></td>
-                      <td><a th:href="@{'/deleteUser/' + ${usuario.id}}">Delete</a></td>
-                    </tr>
+                    <tr th:each="titulo : ${titulos}">
+                      <td th:text="${titulo.nombre}">&nbsp</td>
+                      <td th:text="${titulo.isbn}">&nbsp</td>
+                      <td th:text="${titulo.numReservas}">&nbsp</td>
+                    </tr>                  
                   </tbody>
                 </table>                           
               </div>
             </div>          
           </div>
-
+        </div>
       </section>
       <!-- Blockquote-->
       <section class="section section-lg bg-default">
         <div class="container">
           <div class="row row-50">
             <div class="col-lg-8 col-xl-5">
-              <h4>Zona de usuarios</h4>
+              <h4>Zona de titulos</h4>
               <!-- Quote Primary-->
               <article class="quote-simple">
                 <div class="quote-simple-body">
-                  <q>Registre los usuarios que colaboran con nuestra queria comunidad en Gran Via</q>
+                  <q>Registre los títulos de las novelas, libros y revistas que tenga en inventario</q>
                 </div>
                 <div class="quote-simple-footer">
                   <cite class="heading-5 quote-simple-cite">Daniel Parker</cite><span class="quote-simple-description">Asistente Gran Vía</span>
@@ -203,7 +189,16 @@
     <script type="text/javascript" src="js/core.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <script>
+      $(document).ready(function() {
+          $('#busqueda').on('input', function() {
+              var searchText = $(this).val().toLowerCase();
+              $('tbody tr').filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+              });
+          });
+      });
+  </script>
     <script type="text/javascript" src="js/loading-bar.js"></script>
     <!-- coded by Drel-->
   </body>

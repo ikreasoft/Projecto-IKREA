@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Controlador para la gestión de reservas
@@ -60,6 +61,13 @@ public class ReservaController {
         List<Reserva> listaReservas = (List<Reserva>) reservaRepositorio.findAll(); // Obtener todas las reservas
         model.addAttribute("listaReservas", listaReservas);
         return "booking/bookings";
+    }
+
+    @GetMapping("/bookingsUser")
+    public String mostrarReservasUsuario(Model model) {
+        List<Reserva> listaReservas = ((List<Reserva>) reservaRepositorio.findAll()).stream().filter(r->r.getUsuario().getId()==1).collect(Collectors.toList()); // Obtener todas las reservas del usuario con id1
+        model.addAttribute("listaReservas", listaReservas);
+        return "booking/bookingsUser";
     }
 
     @PostMapping("/reservar")

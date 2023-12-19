@@ -1,8 +1,5 @@
 package com.example.bibliotecagranvia.controladores;
 
-import org.apache.el.stream.Optional;
-import org.hibernate.mapping.List;
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.example.bibliotecagranvia.entidades.Titulo;
 import com.example.bibliotecagranvia.persistencia.AutorRepositorio;
 import com.example.bibliotecagranvia.persistencia.TituloRepositorio;
@@ -25,6 +21,11 @@ public class TituloController {
     public String showTitulos(Model model){
         model.addAttribute("titulos", tituloRepositorio.findAll());
         return "title/titles";
+    }
+    @GetMapping("/titlesNoAdmin")
+    public String showTitulosNoAdmin(Model model){
+        model.addAttribute("titulos", tituloRepositorio.findAll());
+        return "title/titlesNoAdmin";
     }
     @GetMapping("/addTitle")
     public String addTitle(Model model){

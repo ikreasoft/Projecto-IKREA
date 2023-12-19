@@ -26,13 +26,13 @@ public class UserController {
     }
 
     // GET & POST methods for adding a new user
-    @GetMapping("/users/newUser")
+    @GetMapping("/addUser")
     public String showNewForm(Model model) {
         model.addAttribute("usuario", new Usuario());  // Cambiado "Usuario" a "usuario"
         model.addAttribute("pageTitle", "Añadir nuevo usuario");
         return "user/addUser";
     }
-    @PostMapping("/users/save")
+    @PostMapping("/saveUser")
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
@@ -40,7 +40,7 @@ public class UserController {
     }
 
     // GET & POST methods for updating a user
-    @GetMapping("/users/edit/{id}")
+    @GetMapping("/editUser/{id}")
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Usuario usuario = service.get(id);
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     // GET & POST methods for deleting a user
-    @GetMapping("/users/delete/{id}")
+    @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);
