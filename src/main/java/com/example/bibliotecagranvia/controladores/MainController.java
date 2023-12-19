@@ -19,12 +19,12 @@ public class MainController {
         return "main/indexA";
     }
 
-    @GetMapping("/indexBibliotecario")
+    @GetMapping("/indexBiblio")
     public String showIndexBibliotecario(Model model) {
         return "main/indexB";
     }
 
-    @GetMapping("/indexUsuario")
+    @GetMapping("/indexUser")
     public String showIndexUsuario(Model model) {
         return "main/indexU";}
     

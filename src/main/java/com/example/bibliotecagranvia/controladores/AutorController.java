@@ -18,12 +18,21 @@ public class AutorController {
     private AutorRepositorio authorRepository;
 
     // GET method for showing the list of authors
-    @GetMapping("/authors")
+    @GetMapping("/authorsAdmin")
     public String showHomePage(Model model){
         model.addAttribute("autores", authorRepository.findAll());
-        return "author/authors";
+        return "author/authorsA";
     }
-
+    @GetMapping("/authorsBibilo")
+    public String showAuthorsBibilo(Model model){
+        model.addAttribute("autores", authorRepository.findAll());
+        return "author/authorsB";
+    }
+    @GetMapping("/authorsUser")
+    public String showAuthorsUser(Model model){
+        model.addAttribute("autores", authorRepository.findAll());
+        return "author/authorsU";
+    }
     // GET & POST methods for adding a new author
     @GetMapping("/addAuthor")
     public String addAuthor(Autor autor){

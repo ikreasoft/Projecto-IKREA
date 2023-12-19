@@ -41,13 +41,18 @@
             <div class="rd-navbar-nav-wrap">
               <!-- RD Navbar Nav-->
               <ul class="rd-navbar-nav">
-                <li class="rd-nav-item active"><a class="rd-nav-link" href="/">Inicio</a>
+                <li class="rd-nav-item active"><a class="rd-nav-link" href="indexBiblio">Inicio</a>
                 </li>
-                <li class="rd-nav-item"><a class="rd-nav-link" href="titles">Títulos</a>
+                <li class="rd-nav-item"><a class="rd-nav-link" href="titlesBiblio">Títulos</a>
                 </li>
-                <li class="rd-nav-item"><a class="rd-nav-link" href="authors">Autores</a>
+                <li class="rd-nav-item"><a class="rd-nav-link" href="authorsBibilo">Autores</a>
                 </li>
-                <li class="rd-nav-item"><a class="rd-nav-link" href="users">Usuarios</a>
+                <li class="rd-nav-item"><a class="rd-nav-link" href="usersBiblio">Usuarios</a>
+                </li>
+                <li class="rd-nav-item"><a class="rd-nav-link" href="indexLendBiblio">Prestamos</a></li>
+                <li class="rd-nav-item"><a class="rd-nav-link" href="indexBookingBiblio">Reservas</a></li>
+                <li class="rd-nav-item">
+                  <img src="../../images/library.co-worker.png" alt="" srcset="" style="width: 90px; height: 90px; border-radius: 45px; margin-right: -5vh; padding: 2px">
                 </li>
               </ul>
             </div>
@@ -101,7 +106,7 @@
                 <!--  <td th:text="${reserva.titulo.isbn}"></td>-->
                 <td th:text="${#dates.format(reserva.fechaReserva, 'dd-MM-yyyy')}"></td>
                 <td>
-                  <form th:action="@{/quitarReserva}" method="post">
+                  <form th:action="@{quitarReservaBiblio}" method="post">
                     <input type="hidden" name="reservaId" th:value="${reserva.id}" />
                     <button type="submit" class="btn btn-danger">Quitar Reserva</button>
                   </form>

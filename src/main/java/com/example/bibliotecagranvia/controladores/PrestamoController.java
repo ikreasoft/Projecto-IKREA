@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class PrestamoController {
@@ -34,17 +35,27 @@ public class PrestamoController {
     }
 
     // GET method for showing the list of loans enabled by the librarian
-    @GetMapping("prestamoLista")
-    public String mostrarPrestamos(Model model) {
+    @GetMapping("prestamoListaBiblio")
+    public String mostrarPrestamosBiblio(Model model) {
         List<Prestamo> listaPrestamo = (List<Prestamo>) prestamoRepositorio.findAll(); // Obtener todas los prestamos
         model.addAttribute("listaPrestamo", listaPrestamo);
-        return "lend/lends";
+        return "lend/lendsB";
+    }
+     @GetMapping("prestamoListaUser")
+    public String mostrarPrestamosUser(Model model) {
+        List<Prestamo> listaPrestamo = ((List<Prestamo>) prestamoRepositorio.findAll()).stream().filter(p->p.getUsuario().getId()==1).collect(Collectors.toList()); // Obtener todos los prestamos del usuario con id1
+        model.addAttribute("listaPrestamo", listaPrestamo);
+        return "lend/lendsU";
     }
 
     // GET method for showing the list of loans enabled by the librarian
-    @GetMapping("/indexLend")
-    public String gestion_prestamos() {
-        return "lend/indexLend"; // HTML con el menú de opciones
+    @GetMapping("/indexLendBiblio")
+    public String gestion_prestamos_Biblio() {
+        return "lend/indexLendB"; // HTML con el menú de opciones
+    }
+    @GetMapping("/indexLendUser")
+    public String gestion_prestamos_User() {
+        return "lend/indexLendU"; // HTML con el menú de opciones
     }
 
     @GetMapping("/confirmacion_prestamo")

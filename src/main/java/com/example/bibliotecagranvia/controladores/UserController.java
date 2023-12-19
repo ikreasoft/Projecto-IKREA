@@ -17,12 +17,19 @@ public class UserController {
     private ServicioUsuario service;
 
     // GET method for showing the list of users
-    @GetMapping("/users")
+    @GetMapping("/usersAdmin")
     public String showUserList(Model model) {
         List<Usuario> listUsuario = service.listAll();
         model.addAttribute("listUsers", listUsuario);
 
-        return "user/users";
+        return "user/usersA";
+    }
+    @GetMapping("/usersBiblio")
+    public String showUserListBiblio(Model model) {
+        List<Usuario> listUsuario = service.listAll();
+        model.addAttribute("listUsers", listUsuario);
+
+        return "user/usersB";
     }
 
     // GET & POST methods for adding a new user
@@ -36,7 +43,7 @@ public class UserController {
     public String saveUser(Usuario usuario, RedirectAttributes ra) {
         service.save(usuario);
         ra.addFlashAttribute("message", "El usuario ha sido guardado correctamente.");
-        return "redirect:/users";
+        return "redirect:/usersAdmin";
     }
 
     // GET & POST methods for updating a user
@@ -49,7 +56,7 @@ public class UserController {
             return "user/addUser";
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
-            return "redirect:/users";
+            return "redirect:/usersAdmin";
         }
     }
 
@@ -62,6 +69,6 @@ public class UserController {
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:/users";
+        return "redirect:/usersAdmin";
     }
 }

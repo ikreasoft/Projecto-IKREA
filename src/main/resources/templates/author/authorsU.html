@@ -1,8 +1,8 @@
 
-<!-- Price box minimal--><!DOCTYPE html>
+<!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
   <head>
-    <title>GRAN VÍA - Usuarios</title>
+    <title>GRAN VÍA - Autores</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
         <div class="cssload-container">
           <div class="cssload-speeding-wheel"></div>          
         </div>        
-        <p>Buscando a nuestros usuarios...</p>
+        <p>Generando autores...</p>
       </div>
     </div>
     <div class="page">
@@ -42,13 +42,15 @@
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
-                    <!-- <li class="rd-nav-item active"><a class="rd-nav-link" href="/">Inicio</a>
-                    </li>                     -->
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="titles">Títulos</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="indexUser">Inicio</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="titlesUser">Títulos</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="authors">Autores</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="authorsUser">Autores</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="users">Usuarios</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="indexLendUser">Prestamos</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="indexBookingUser">Reservas</a></li> 
+                    <li class="rd-nav-item">
+                      <img src="images/user.png" alt="" srcset="" style="width: 90px; height: 90px; border-radius: 45px; margin-right: -5vh; padding: 2px">
                     </li>
                   </ul>                  
                 </div>
@@ -57,68 +59,45 @@
           </nav>
         </div>
       </header>
-      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/usuarios-header.jpg);">
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/writer-header.jpg);">
         <div class="container">
-          <h2 class="breadcrumbs-custom-title">Usuarios</h2>
-          <div class="breadcrumbs-custom-subtitle">Forjando Juntos el Camino del Éxito: Donde Cada Empleado Cuenta.</div>
+          <h2 class="breadcrumbs-custom-title">Autores</h2>
+          <div class="breadcrumbs-custom-subtitle">"Palabras que inspiran, historias que perduran: ¡Escribe tu legado!"</div>
         </div>
       </section>
-      <!-- Base seccion: titulos -->
+      <!-- Base seccion: autores -->
       <section class="section section-lg bg-default">
         <div class="container">
-          <!-- Ventana flotante para el registro de nuevos autores. -->
-          <div class="ventana_flotante">
-            <button class="ventana_flotante" type="button" onclick="location.href='/addUser'">Crear nuevo usuario</button>
-          </div>          
-            <div class="row">
-              <div class="col-xl-8">              
-                <!-- Tabla de usuarios -->
-                <table class="table">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">Email</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellidos</th>
-                      <th scope="col">Dirección</th>
-                      <th scope="col">Telefono</th>
-                      <th scope="col">Enabled</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>                  
-                  <tbody>
-                    <tr th:each="usuario : ${listUsers}">
-                      <td th:text="${usuario.email}"></td>
-                      <td th:text="${usuario.nombre}"></td>
-                      <td th:text="${usuario.apellidos}"></td>
-                      <td th:text="${usuario.direccion}"></td>
-                      <td th:text="${usuario.telefono}"></td>
-                      <td th:text="${usuario.enabled}"></td>
-                      <td><a th:href="@{'/editUser/' + ${usuario.id}}">Edit</a></td>
-                      <td><a th:href="@{'/deleteUser/' + ${usuario.id}}">Delete</a></td>
-                    </tr>
-                  </tbody>
-                </table>                           
-              </div>
-            </div>          
+          <div class="row">
+            <div class="col-xl-8">              
+              <!-- Tabla de autores -->
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>                    
+                    <!--<th scope="col">#</th>-->
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Nacimiento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="autor : ${autores}">
+                    <td th:text="${autor.nombreAutor}">&nbsp</td>
+                    <td th:text="${autor.apellido}">&nbsp</td>
+                    <td th:text="${autor.fechaNacimiento}"</td>
+                  </tr>                  
+                </tbody>
+              </table>                           
+            </div>
           </div>
-
+        </div>
       </section>
       <!-- Blockquote-->
       <section class="section section-lg bg-default">
         <div class="container">
           <div class="row row-50">
             <div class="col-lg-8 col-xl-5">
-              <h4>Zona de usuarios</h4>
-              <!-- Quote Primary-->
-              <article class="quote-simple">
-                <div class="quote-simple-body">
-                  <q>Registre los usuarios que colaboran con nuestra queria comunidad en Gran Via</q>
-                </div>
-                <div class="quote-simple-footer">
-                  <cite class="heading-5 quote-simple-cite">Daniel Parker</cite><span class="quote-simple-description">Asistente Gran Vía</span>
-                </div>
-              </article>
+              <h4>Zona de autores</h4>
             </div>
           </div>
         </div>
@@ -205,6 +184,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="js/loading-bar.js"></script>
-    <!-- coded by Drel-->
   </body>
 </html>

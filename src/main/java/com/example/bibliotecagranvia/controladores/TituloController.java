@@ -17,15 +17,20 @@ public class TituloController {
     TituloRepositorio tituloRepositorio;
     @Autowired
     AutorRepositorio autorRepositorio;
-    @GetMapping("/titles")
+    @GetMapping("/titlesAdmin")
     public String showTitulos(Model model){
         model.addAttribute("titulos", tituloRepositorio.findAll());
-        return "title/titles";
+        return "title/titlesA";
     }
-    @GetMapping("/titlesNoAdmin")
-    public String showTitulosNoAdmin(Model model){
+    @GetMapping("/titlesBiblio")
+    public String showTitulosBiblio(Model model){
         model.addAttribute("titulos", tituloRepositorio.findAll());
-        return "title/titlesNoAdmin";
+        return "title/titlesB";
+    }
+     @GetMapping("/titlesUser")
+    public String showTitulosUser(Model model){
+        model.addAttribute("titulos", tituloRepositorio.findAll());
+        return "title/titlesU";
     }
     @GetMapping("/addTitle")
     public String addTitle(Model model){
