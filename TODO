@@ -1,0 +1,5 @@
+Actualizar nombre indexBooking.html
+Actualizar nombre indexLend.html
+Actualizar estilo de las páginas.html de las carpetas lend y booking y userTitleNotFound.html de miscelaneous
+Control de usuarios, si el usuario existe ya en la BD
+Control de libros por ISBN, si el libro existe ya en la BD

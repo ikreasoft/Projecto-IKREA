@@ -5,13 +5,14 @@
 }
 
 nav{
-    float: right;
+    text-align: right;
+    padding: 30px 50px 0 0;
 }
-
+m
 nav ul li{
     list-style: none;
-    margin-left: 75px ;
-    padding: 12px 0 ;
+    margin-left: 20px ;
+    padding: 12px 10px ;
     float: left;
 }
 
