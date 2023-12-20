@@ -41,16 +41,18 @@
                         <div class="rd-navbar-nav-wrap">
                             <!-- RD Navbar Nav-->
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item active"><a class="rd-nav-link" href="/indexAdmin">Inicio</a>
-                                </li>                  
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="/titlesAdmin">Títulos</a>
+                                <li class="rd-nav-item active"><a class="rd-nav-link" href="indexBiblio">Inicio</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="/authorsAdmin">Autores</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="titlesBiblio">Títulos</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="/usersAdmin">Usuarios</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="authorsBibilo">Autores</a>
                                 </li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="usersBiblio">Usuarios</a>
+                                </li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="indexLendBiblio">Prestamos</a></li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="indexBookingBiblio">Reservas</a></li>
                                 <li class="rd-nav-item">
-                                    <img src="../../images/admin.png" alt="" srcset="" style="width: 90px; height: 90px; border-radius: 45px; margin-right: -5vh; padding: 2px">
+                                  <img src="../../images/library.co-worker.png" alt="" srcset="" style="width: 60px; height: 60px; border-radius: 45px; margin-right: -5vh; padding: 2px">
                                 </li>
                             </ul>
                         </div>
@@ -61,34 +63,40 @@
     </header>
     <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/titles-header.jpeg);">
         <div class="container">
-            <h2 class="breadcrumbs-custom-title">Editar Títulos</h2>
-            <div class="breadcrumbs-custom-subtitle">Guarda los titulares con su nueva información.</div>
+            <h2 class="breadcrumbs-custom-title">Nuevo prestamo</h2>
+            <div class="breadcrumbs-custom-subtitle">Busca de forma inteligente.</div>
         </div>
     </section>
     <!-- Base seccion: titulos -->
     <section class="section section-lg bg-default">
         <div class="container">
+            <!-- Ventana flotante para el registro de nuevos autores. -->
+            <!--<div class="ventana_flotante">
+               <button class="ventana_flotante" type="button" onclick="location.href='/titulos.html'">Volver a Titulos</button>
+            </div>
+          -->
             <div class="row">
                 <div class="col-xl-4">
-                    <main>
-                        <form th:action="@{/editTitle/{id}(id=${titulo.id})}" th:object="${titulo}" method="post">
-                            <label for="titulo">Titulo:</label>
-                            <input type="text" th:field="${titulo.nombre}"/><br><br>
-                            <label for="isbn">ISBN:</label>
-                            <input type="text" th:field="*{isbn}"><br/><br/>
-                            <label for="numReserva">Número de reserva:</label>
-                            <input type="number" th:field="*{numReservas}"/><br/><br/>
-                            <label for="autor">Autor:</label>
-                            <select name="autor" th:field="*{autor}" multiple="multiple">
-                                 <option value="">Select an author</option>
-                                 <th:block th:each="author : ${autoresTodos}">
-                                     <option th:value="${author.id}" th:text="${author.nombreAutor} +' '+ ${author.apellido}" ></option>
-                                 </th:block>
-                             </select>
-                             <br><br>
-                            <input type="submit" value="Editar Titulo" />
+                <main>
+                    <div class="container-fluid text-center">
+                        <form action="prestamoBiblio" method="post">
+                            <div class="form-group">
+                                <label for="nombreUsuario">Nombre de Usuario:</label>
+                                <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="tituloNombre">Nombre del Título:</label>
+                                <input type="text" id="tituloNombre" name="tituloNombre" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="isbn">ISBN:</label>
+                                <input type="text" id="isbn" name="isbn" class="form-control">
+                            </div>
+                            <input type="submit" value="Buscar" class="btn btn-primary">
                         </form>
-                    </main>
+                    </div>
+                </main>
+
                 </div>
             </div>
         </div>
@@ -98,11 +106,17 @@
         <div class="container">
             <div class="row row-50">
                 <div class="col-lg-8 col-xl-5">
-                    <h4>Zona de titulos</h4>
+                    <h4>Zona de busqueda</h4>
                     <!-- Quote Primary-->
                     <article class="quote-simple">
                         <div class="quote-simple-body">
-                            <q>Registre los títulos de las novelas, libros y revistas que tenga en inventario</q>
+                            <q>Busque los prestamos realizados en el sistema, según su necesidad.</q> <br>
+                            Puedes buscar por:
+                            <ul>
+                                <li>- Nombre de Usuario</li>
+                                <li>- Nombre del Título</li>
+                                <li>- ISBN</li>
+                            </ul>
                         </div>
                         <div class="quote-simple-footer">
                             <cite class="heading-5 quote-simple-cite">Daniel Parker</cite><span class="quote-simple-description">Asistente Gran Vía</span>
@@ -187,12 +201,12 @@
             </div>
         </div>
     </footer>
-    </div>
-    <div class="snackbars" id="form-output-global"></div>
-    <script type="text/javascript" src="js/core.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</div>
+<div class="snackbars" id="form-output-global"></div>
+<script type="text/javascript" src="js/core.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="js/loading-bar.js"></script>
+<script type="text/javascript" src="js/loading-bar.js"></script>
 </body>
 </html>

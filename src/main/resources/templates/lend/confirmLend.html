@@ -14,11 +14,19 @@
 <div class="contenedor-menu-formulario">
     <nav>
         <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="addTitle">Gestionar Título</a></li>
-            <li><a href="authors">Gestionar Autores</a></li>
-            <li><a href="users/new">Registrar Usuario</a></li>
-            <li><a href="users">Ver listado de Usuario</a></li>
+            <li class="rd-nav-item active"><a class="rd-nav-link" href="indexBiblio">Inicio</a>
+            </li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="titlesBiblio">Títulos</a>
+            </li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="authorsBibilo">Autores</a>
+            </li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="usersBiblio">Usuarios</a>
+            </li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="indexLendBiblio">Prestamos</a></li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="indexBookingBiblio">Reservas</a></li>
+            <li class="rd-nav-item">
+              <img src="../../images/library.co-worker.png" alt="" srcset="" style="width: 90px; height: 90px; border-radius: 45px; margin-right: -5vh; padding: 2px">
+            </li>
         </ul>
     </nav>
 </div>
@@ -31,7 +39,7 @@
         <p>Fecha de Préstamo: <span th:text="${#dates.format(fechaPrestamo, 'dd-MM-yyyy')}"></span></p>
         <p>Fecha de Devolución: <span th:text="${#dates.format(fechaDevolucion, 'dd-MM-yyyy')}"></span></p>
 
-        <form action="/prestar" method="post">
+        <form action="prestarBiblio" method="post">
         <input type="hidden" name="nombreUsuario" th:value="${usuario.nombre}" />
         <input type="hidden" name="tituloNombre" th:value="${titulo.nombre}" />
         <input type="submit" value="Confirmar Préstamo" />
