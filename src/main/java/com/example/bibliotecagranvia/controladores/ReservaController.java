@@ -47,7 +47,7 @@ public class ReservaController {
 
     @GetMapping("/bookingsUser")
     public String mostrarReservasUsuario(Model model) {
-        List<Reserva> listaReservas = ((List<Reserva>) reservaRepositorio.findAll()).stream().filter(r->r.getUsuario().getId()==1).collect(Collectors.toList()); // Obtener todas las reservas del usuario con id1
+        List<Reserva> listaReservas = ((List<Reserva>) reservaRepositorio.findAll()).stream().filter(r->r.getUsuario().getId()==2).collect(Collectors.toList()); // Obtener todas las reservas del usuario con id1
         model.addAttribute("listaReservas", listaReservas);
         return "booking/bookingsU";
     }
@@ -65,7 +65,7 @@ public class ReservaController {
             // Comprobar si el ISBN coincide con el título encontrado por nombre
             Titulo tituloPorISBNEncontrado = tituloPorISBN.get();
             if (!titulo.getIsbn().equals(tituloPorISBNEncontrado.getIsbn())) {
-                return "redirect:/booking/bookings"; // ISBN no coincide con el título
+                return "redirect:/bookingsBiblio"; // ISBN no coincide con el título
             }
 
             // Lógica para reserva
@@ -78,12 +78,12 @@ public class ReservaController {
 
             return confirmacion_reserva(); // Redirige a la página de confirmación
         } else {
-            return "redirect:/booking/bookings"; // Página de error o redirigir a algún lugar correspondiente
+            return "redirect:/bookingsBiblio"; // Página de error o redirigir a algún lugar correspondiente
         }
     }
     @PostMapping("/reservarUser")
     public String reservarLibroUser( @RequestParam String tituloNombre, @RequestParam String isbn) {
-        Optional<Usuario> usuarioOptional = repositorioUsuario.findById(1);
+        Optional<Usuario> usuarioOptional = repositorioUsuario.findById(2);
         Optional<Titulo> tituloOptional = tituloRepositorio.findByNombre(tituloNombre);
         Optional<Titulo> tituloPorISBN = tituloRepositorio.findByIsbn(isbn);
 
@@ -94,7 +94,7 @@ public class ReservaController {
             // Comprobar si el ISBN coincide con el título encontrado por nombre
             Titulo tituloPorISBNEncontrado = tituloPorISBN.get();
             if (!titulo.getIsbn().equals(tituloPorISBNEncontrado.getIsbn())) {
-                return "redirect:/booking/bookingsU"; // ISBN no coincide con el título
+                return "redirect:/bookingsUser"; // ISBN no coincide con el título
             }
 
             // Lógica para reserva
@@ -105,9 +105,9 @@ public class ReservaController {
 
             reservaRepositorio.save(reserva);
 
-            return confirmacion_reserva(); // Redirige a la página de confirmación
+            return confirmacion_reserva_user(); // Redirige a la página de confirmación
         } else {
-            return "redirect:/booking/bookingsU"; // Página de error o redirigir a algún lugar correspondiente
+            return "redirect:/bookingsUser"; // Página de error o redirigir a algún lugar correspondiente
         }
     }
     @GetMapping("/confirmationBookingBiblio")

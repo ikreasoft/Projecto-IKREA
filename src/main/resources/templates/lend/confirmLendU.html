@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Renovacion</title>
+    <title>Confirmación de Prestamo</title>
     <link rel="shortcut icon" href="img/I.png" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/css/addTitle-styles.css}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -14,27 +14,32 @@
 <div class="contenedor-menu-formulario">
     <nav>
         <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="addTitle">Gestionar Título</a></li>
-            <li><a href="authors">Gestionar Autores</a></li>
-            <li><a href="users/new">Registrar Usuario</a></li>
-            <li><a href="users">Ver listado de Usuario</a></li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="indexUser">Inicio</a></li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="titlesUser">Títulos</a>
+            </li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="authorsUser">Autores</a>
+            </li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="indexLendUser">Prestamos</a></li>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="indexBookingUser">Reservas</a></li> 
+            <li class="rd-nav-item">
+              <img src="images/user.png" alt="" srcset="" style="width: 90px; height: 90px; border-radius: 45px; margin-right: -5vh; padding: 2px">
+            </li>
         </ul>
     </nav>
 </div>
 
 <main style="padding-top: 80px;">
     <div class="container-fluid text-center">
-        <h1>Confirmación de Renovacion</h1>
+        <h1>Confirmación de Préstamo</h1>
         <p>Usuario: <span th:text="${usuario.nombre}"></span></p>
         <p>Título: <span th:text="${titulo.nombre}"></span></p>
         <p>Fecha de Préstamo: <span th:text="${#dates.format(fechaPrestamo, 'dd-MM-yyyy')}"></span></p>
         <p>Fecha de Devolución: <span th:text="${#dates.format(fechaDevolucion, 'dd-MM-yyyy')}"></span></p>
 
-        <form action="/renovar" method="post">
-            <input type="hidden" name="nombreUsuario" th:value="${usuario.nombre}" />
-            <input type="hidden" name="tituloNombre" th:value="${titulo.nombre}" />
-            <input type="submit" value="Confirmar Reserva" />
+        <form action="prestarUser" method="post">
+        <input type="hidden" name="nombreUsuario" th:value="${usuario.nombre}" />
+        <input type="hidden" name="tituloNombre" th:value="${titulo.nombre}" />
+        <input type="submit" value="Confirmar Préstamo" />
         </form>
     </div>
 </main>

@@ -13,4 +13,12 @@ public class MiscelaneaController {
     public String getError(){
         return "miscelaneous/error";
     }
+    @GetMapping("/userTitleNotFoundBiblio")
+    public String getUserTitleNotFoundBiblio(){
+        return "miscelaneous/userTitleNotFoundB";
+    }
+    @GetMapping("/userTitleNotFoundUser")
+    public String getUserTitleNotFoundUser(){
+        return "miscelaneous/userTitleNotFoundU";
+    }
 }
